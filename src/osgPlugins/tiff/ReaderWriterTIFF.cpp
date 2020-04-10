@@ -222,7 +222,7 @@ toff_t libtiffOStreamSeekProc(thandle_t fd, toff_t off, int i)
         // position required past the end of the stream so we need to insert extra characters to
         // ensure the stream is big enough to encompass the new the position.
         fout->seekp(0, std::ios::end);
-        for(toff_t is=stream_end; is<pos_required; ++is)
+        for(toff_t ii=stream_end; ii<pos_required; ++ii)
         {
             fout->put(char(0));
         }
@@ -332,15 +332,20 @@ checkcmap(int n, uint16* r, uint16* g, uint16* b)
 }
 
 static void
-invert_row(unsigned char *ptr, unsigned char *data, int n, int invert, uint16 bitspersample)
+invert_row(unsigned char *ptr, unsigned char *data, int n1, int invert, uint16 bitspersample)
 {
     // OSG_NOTICE<<"invert_row "<<invert<<std::endl;
+	int n = n1;
     if (bitspersample == 8)
     {
+		unsigned char * ptr1 = ptr;
+		unsigned char * data1 = data;
         while (n--)
         {
-            if (invert) *ptr++ = 255 - *data++;
-            else *ptr++ = *data++;
+            if (invert) 
+				*ptr1++ = 255 - *data1++;
+            else 
+				*ptr1++ = *data1++;
         }
     }
     else if (bitspersample == 16)
@@ -642,13 +647,16 @@ simage_tiff_load(std::istream& fin,
     }
 
     // initialize memory
-    for(unsigned char* ptr=buffer;ptr<buffer+w*h*format;++ptr) *ptr = 0;
+    for(unsigned char* ptr=buffer; ptr<buffer+w*h*format; ++ptr) 
+		*ptr = 0;
 
     width = w;
     height = h;
 
-    currPtr = buffer + (h-1)*w*format;
-
+    currPtr = buffer + (h - 1) * w * format;
+#ifdef _DEBUG
+	unsigned char * startPtr = currPtr;
+#endif
     tifferror = ERR_NO_ERROR;
 
     switch (pack(photometric, config))
@@ -657,28 +665,25 @@ simage_tiff_load(std::istream& fin,
         case pack(PHOTOMETRIC_MINISBLACK, PLANARCONFIG_CONTIG):
         case pack(PHOTOMETRIC_MINISWHITE, PLANARCONFIG_SEPARATE):
         case pack(PHOTOMETRIC_MINISBLACK, PLANARCONFIG_SEPARATE):
-            inbuf = new unsigned char [TIFFScanlineSize(in)];
-            for (row = 0; row < h; row++)
-            {
-                if (TIFFReadScanline(in, inbuf, row, 0) < 0)
-                {
-                    tifferror = ERR_READ;
-                    break;
-                }
-                invert_row(currPtr, inbuf, samplesperpixel*w, photometric == PHOTOMETRIC_MINISWHITE, bitspersample);
-                currPtr -= format*w;
-            }
-            break;
-
+		{
+			int scanlinesize = TIFFScanlineSize(in);
+			inbuf = new unsigned char[scanlinesize * samplesperpixel];
+			for (row = 0; row < h; row++)
+			{
+				if (TIFFReadScanline(in, inbuf, row, 0) < 0)
+				{
+					tifferror = ERR_READ;
+					break;
+				}
+				invert_row(currPtr, inbuf, samplesperpixel * w, photometric == PHOTOMETRIC_MINISWHITE, bitspersample);
+				currPtr -= format * w;
+			}
+			break;
+		}
         case pack(PHOTOMETRIC_PALETTE, PLANARCONFIG_CONTIG):
         case pack(PHOTOMETRIC_PALETTE, PLANARCONFIG_SEPARATE):
-
             if (TIFFGetField(in, TIFFTAG_COLORMAP, &red, &green, &blue) != 1)
-            {
                 tifferror = ERR_READ;
-                break;
-            }
-
             /* */
             /* Convert 16-bit colormap to 8-bit (unless it looks */
             /* like an old-style 8-bit colormap). */
@@ -809,6 +814,8 @@ class ReaderWriterTIFF : public osgDB::ReaderWriter
             int t = height_ret;
             int r = 1;
 
+            int internalFormat = numComponents_ret;
+
             unsigned int pixelFormat =
                 numComponents_ret == 1 ? GL_LUMINANCE :
                 numComponents_ret == 2 ? GL_LUMINANCE_ALPHA :
@@ -820,7 +827,6 @@ class ReaderWriterTIFF : public osgDB::ReaderWriter
                 bitspersample_ret == 16 ? GL_UNSIGNED_SHORT :
                 bitspersample_ret == 32 ? GL_FLOAT : (GLenum)-1;
 
-            int internalFormat = 0;
             switch (pixelFormat) {
                 case GL_LUMINANCE: {
                     switch (dataType) {
@@ -905,6 +911,8 @@ class ReaderWriterTIFF : public osgDB::ReaderWriter
             int samplesPerPixel;
             int bitsPerSample;
             uint16 photometric;
+			bool hasExtraSamples = false;
+			uint16 extraSamples[1];
 
             image = TIFFClientOpen("outputstream", "w", (thandle_t)&fout,
                                     libtiffOStreamReadProc, //Custom read function
@@ -929,7 +937,9 @@ class ReaderWriterTIFF : public osgDB::ReaderWriter
                     samplesPerPixel = 1;
                     break;
                 case GL_LUMINANCE_ALPHA:
-                case GL_RG:
+					hasExtraSamples = true;
+					extraSamples[0] = EXTRASAMPLE_UNASSALPHA;
+				case GL_RG:
                     photometric = PHOTOMETRIC_MINISBLACK;
                     samplesPerPixel = 2;
                     break;
@@ -940,6 +950,8 @@ class ReaderWriterTIFF : public osgDB::ReaderWriter
                 case GL_RGBA:
                     photometric = PHOTOMETRIC_RGB;
                     samplesPerPixel = 4;
+					hasExtraSamples = true;
+					extraSamples[0] = EXTRASAMPLE_UNASSALPHA;
                     break;
                 default:
                     return WriteResult::ERROR_IN_WRITING_FILE;
@@ -947,7 +959,7 @@ class ReaderWriterTIFF : public osgDB::ReaderWriter
             }
 
             uint32 rowsperstrip = 0;
-
+            
             switch(img.getDataType()){
                 case GL_FLOAT:
                     TIFFSetField(image, TIFFTAG_SAMPLEFORMAT, SAMPLEFORMAT_IEEEFP);
@@ -972,10 +984,12 @@ class ReaderWriterTIFF : public osgDB::ReaderWriter
             TIFFSetField(image, TIFFTAG_BITSPERSAMPLE,bitsPerSample);
             TIFFSetField(image, TIFFTAG_SAMPLESPERPIXEL,samplesPerPixel);
             TIFFSetField(image, TIFFTAG_PHOTOMETRIC, photometric);
+			if (hasExtraSamples)
+				TIFFSetField(image, TIFFTAG_EXTRASAMPLES, 1, extraSamples);
             TIFFSetField(image, TIFFTAG_COMPRESSION, compressionType);
             TIFFSetField(image, TIFFTAG_FILLORDER, FILLORDER_MSB2LSB);
             TIFFSetField(image, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
-
+            
             if (rowsperstrip==0) rowsperstrip = TIFFDefaultStripSize(image, 0);
             TIFFSetField(image, TIFFTAG_ROWSPERSTRIP, rowsperstrip);
 

@@ -454,7 +454,8 @@ void
 FltExportVisitor::writeLevelOfDetail( const osg::LOD& lod,
                                     osg::Vec3d const& center,
                                     double switchInDist,
-                                    double switchOutDist)
+                                    double switchOutDist,
+									double sigsize)
 {
     uint16 length( 80 );
     IdHelper id(*this, lod.getName() );
@@ -472,7 +473,7 @@ FltExportVisitor::writeLevelOfDetail( const osg::LOD& lod,
     _records->writeFloat64( center.y() );
     _records->writeFloat64( center.z() );
     _records->writeFloat64( 0 );               // Transition range
-    _records->writeFloat64( 0 );               // Significant size
+    _records->writeFloat64( sigsize );               // Significant size
 
 }
 
@@ -757,9 +758,9 @@ FltExportVisitor::writeLightPoint( const osgSim::LightPointNode* lpn )
             (*v)[ idx ] = lp._position;
             (*c)[ idx ] = lp._color;
 
-            const osgSim::DirectionalSector* ds = dynamic_cast< osgSim::DirectionalSector* >( lp._sector.get() );
-            if (ds)
-                normal = ds->getDirection();
+            const osgSim::DirectionalSector* ds2 = dynamic_cast< osgSim::DirectionalSector* >( lp._sector.get() );
+            if (ds2)
+                normal = ds2->getDirection();
             (*n)[ idx ] = normal;
         }
         _vertexPalette->add( (const osg::Array*)NULL, v.get(), c.get(), n.get(), NULL, true, true, false );

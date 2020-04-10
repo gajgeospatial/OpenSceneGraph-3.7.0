@@ -337,6 +337,10 @@ VertexPaletteManager::asVec2Array( const osg::Array* in, const unsigned int n )
     const unsigned int nToCopy = ( (n < in->getNumElements()) ? n : in->getNumElements() );
     osg::ref_ptr< osg::Vec2Array > ret = new osg::Vec2Array( n );
 
+#ifdef _DEBUG
+	int fubar = 0;
+#endif
+
     switch( arrayType )
     {
     case osg::Array::Vec2ArrayType:
@@ -358,6 +362,26 @@ VertexPaletteManager::asVec2Array( const osg::Array* in, const unsigned int n )
             (*ret)[ idx ] = (*v2d)[ idx ]; // convert Vec2 double to Vec2 float
         return ret.get();
     }
+	case osg::Array::Vec3ArrayType:
+	{
+		osg::ref_ptr< const osg::Vec3Array > v3d =
+			dynamic_cast< const osg::Vec3Array* >(in);
+		unsigned int idx;
+		for (idx = 0; idx < nToCopy; idx++)
+		{
+#ifdef _DEBUG
+			float val2 = (*v3d)[idx][2];
+			if (val2 != 0.0)
+			{
+				++fubar;
+			}
+#endif
+			(*ret)[idx][0] = (*v3d)[idx][0]; // convert Vec2 double to Vec2 float
+			(*ret)[idx][1] = (*v3d)[idx][1]; // convert Vec2 double to Vec2 float
+		}
+		return ret.get();
+
+	}
     default:
     {
         OSG_WARN << "fltexp: Unsupported array type in conversion to Vec2Array: " << arrayType << std::endl;

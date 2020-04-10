@@ -489,7 +489,7 @@ bool OSGA_Archive::_open(std::istream& input)
     return false;
 }
 
-void OSGA_Archive::close()
+void OSGA_Archive::close(bool forceall)
 {
     SERIALIZER();
 

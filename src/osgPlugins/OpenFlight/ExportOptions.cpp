@@ -80,8 +80,20 @@ std::string ExportOptions::_lightingOption( "lighting" );
  *  the osg::Image object referenced by the osg::Texture2D StateAttribute.
  */
 std::string ExportOptions::_stripTextureFilePathOption( "stripTextureFilePath" );
+/** Value: "RemapTex2Directory".
+ * If present in the Options string, the exporter strips CDB GT path data from
+ * the texture file names and replaces it with the value associated with the
+ * option
+*/
+std::string ExportOptions::_RemapTex2Directory("RemapTex2Directory");
+/** Value: "CDBVersion".
+* If present in the Options string, the exporter sets the texture remapping options to the CDB Version Specified
+*/
+std::string ExportOptions::_CDBVersion("CDBVersion"); // This is the token it can not change
+std::string ExportOptions::_CDBVersionValue("3.0"); //This is the resetable value
 //@}
 
+//GAJ Add Remap texture option
 
 using namespace osgDB;
 
@@ -97,7 +109,8 @@ ExportOptions::ExportOptions()
     _units( METERS ),
     _validate( false ),
     _lightingDefault( true ),
-    _stripTextureFilePath( false )
+    _stripTextureFilePath( false ),
+	_remapTextureFilePath(NoOption)
 {
 }
 
@@ -106,8 +119,8 @@ ExportOptions::ExportOptions( const osgDB::ReaderWriter::Options* opt )
     _units( METERS ),
     _validate( false ),
     _lightingDefault( true ),
-    _stripTextureFilePath( false )
-
+    _stripTextureFilePath( false ),
+	_remapTextureFilePath(NoOption)
 {
     if (opt)
     {
@@ -135,7 +148,7 @@ ExportOptions::parseOptionsString()
         return;
 
     std::string::size_type pos( 0 );
-    while (pos != str.npos)
+    while (pos != str.npos && pos < str.length())
     {
         // Skip leading spaces.
         while ( (pos < str.length()) &&
@@ -148,7 +161,7 @@ ExportOptions::parseOptionsString()
         if (count == str.npos)
             pos = str.npos;
         else
-            pos += (count+1);
+            pos += (count+2); //GAJ was count + 1 which probably hasn't worked for a while
 
         // See if it's a Boolen/toggle
         if ( token == _validateOption )
@@ -163,6 +176,8 @@ ExportOptions::parseOptionsString()
             setStripTextureFilePath( true );
             continue;
         }
+//GAJ Add Check for Remap texture option and capture predicate string
+
         // Protect against unrecognized options without values
         if ( pos == str.npos )
         {
@@ -228,6 +243,55 @@ ExportOptions::parseOptionsString()
                 OSG_WARN << "fltexp: Unsupported lighting value: " << value << ". Defaulting to ON." << std::endl;
             setLightingDefault( lighting );
         }
+		else if (token == _RemapTex2Directory)
+		{
+			setTextureRemapPredicate(value);
+			if (value == "./")
+			{
+				setRemapTextureFilePath(ExportOptions::ToRGB);
+			}
+			else if (value == "./wEdt")
+			{
+				setTextureRemapPredicate("./");
+				setRemapTextureFilePath(ExportOptions::ToRGBwEdit);
+			}
+			else
+			{
+				std::string VersionStr = getCDBVersion();
+				size_t tpos;
+				size_t rpos = VersionStr.find("3.2");
+				
+				tpos = value.find("501_GTModelTexture");
+				if (tpos == std::string::npos)
+				{		
+					if (rpos != std::string::npos)
+						setRemapTextureFilePath(ExportOptions::GeoSpecific32);
+					else
+						setRemapTextureFilePath(ExportOptions::GeoSpecific);
+				}
+					
+				else
+				{					
+					if(rpos != std::string::npos)
+						setRemapTextureFilePath(ExportOptions::GeoTypical32);
+					else
+						setRemapTextureFilePath(ExportOptions::GeoTypical);
+
+				}
+			}
+		}
+		else if (token == _CDBVersion)
+		{
+			setCDBVersion(value);
+			size_t tpos = value.find("3.2");
+			if (tpos != std::string::npos)
+			{
+				if (getRemapTextureFilePath() == ExportOptions::GeoTypical)
+					setRemapTextureFilePath(ExportOptions::GeoTypical32);
+				if (getRemapTextureFilePath() == ExportOptions::GeoSpecific)
+					setRemapTextureFilePath(ExportOptions::GeoSpecific32);
+			}
+		}
         else
             OSG_WARN << "fltexp: Bogus OptionString: " << token << std::endl;
     }

@@ -77,11 +77,16 @@ MaterialPool::MaterialPool()
     // Default material.
     // http://www.multigen-paradigm.com/ubb/Forum1/HTML/000228.html
     _defaultMaterial = new osg::Material;
-    _defaultMaterial->setAmbient(osg::Material::FRONT_AND_BACK,osg::Vec4(1,1,1,1));
-    _defaultMaterial->setDiffuse (osg::Material::FRONT_AND_BACK,osg::Vec4(1,1,1,1));
-    _defaultMaterial->setSpecular(osg::Material::FRONT_AND_BACK,osg::Vec4(0,0,0,1));
-    _defaultMaterial->setEmission(osg::Material::FRONT_AND_BACK,osg::Vec4(0,0,0,1));
-    _defaultMaterial->setShininess(osg::Material::FRONT_AND_BACK,0);
+	_defaultMaterial->setColorMode(osg::Material::ColorMode::OFF);
+	_defaultMaterial->setAmbient(osg::Material::FRONT_AND_BACK, osg::Vec4(0.2, 0.2, 0.2, 1.0));
+	_defaultMaterial->setDiffuse(osg::Material::FRONT_AND_BACK, osg::Vec4(0.8, 0.8, 0.8, 1.0));
+	_defaultMaterial->setSpecular(osg::Material::FRONT_AND_BACK, osg::Vec4(0.0, 0.0, 0.0, 1.0));
+	_defaultMaterial->setEmission(osg::Material::FRONT_AND_BACK, osg::Vec4(0.0, 0.0, 0.0, 1.0));
+	_defaultMaterial->setShininess(osg::Material::FRONT_AND_BACK,0);
+//	_defaultMaterial->setAmbient(osg::Material::FRONT_AND_BACK, osg::Vec4(1, 1, 1, 1));
+//	_defaultMaterial->setDiffuse(osg::Material::FRONT_AND_BACK, osg::Vec4(1, 1, 1, 1));
+//	_defaultMaterial->setSpecular(osg::Material::FRONT_AND_BACK, osg::Vec4(1, 1, 1, 1));
+//	_defaultMaterial->setEmission(osg::Material::FRONT_AND_BACK, osg::Vec4(1, 1, 1, 1));
 }
 
 

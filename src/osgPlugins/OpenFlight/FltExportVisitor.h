@@ -95,7 +95,7 @@ public:
     void writeDegreeOfFreedom( const osgSim::DOFTransform* dof );
     void writeExternalReference( const osg::ProxyNode& node );
     void writeLevelOfDetail( const osg::LOD& lod, const osg::Vec3d& center,
-                             double switchInDist, double switchOutDist);
+                             double switchInDist, double switchOutDist, double sigsize);
     void writeLightSource( const osg::LightSource& ls );
     void writeSwitch( const osgSim::MultiSwitch* ms );
     void writeSwitch( const osg::Switch* ms );

@@ -49,6 +49,7 @@
 #include <osgSim/MultiSwitch>
 #include <osgSim/LightPointNode>
 #include <osgSim/ObjectRecordData>
+#include <osg/ValueObject>
 
 #ifdef _MSC_VER
 // Disable this warning. It's OK for us to use 'this' in initializer list,
@@ -224,8 +225,10 @@ FltExportVisitor::apply( osg::LOD& lodNode )
         // Switch-in/switch-out distances may vary per child
         double switchInDist = lodNode.getMaxRange(i);
         double switchOutDist = lodNode.getMinRange(i);
+		lodNode.computeBound();
+		double sigsize = lodNode.getRadius();
 
-        writeLevelOfDetail( lodNode, center, switchInDist, switchOutDist);
+        writeLevelOfDetail( lodNode, center, switchInDist, switchOutDist, sigsize);
         writeMatrix( lodNode.getUserData() );
         writeComment( lodNode );
 
@@ -559,9 +562,29 @@ void
 FltExportVisitor::writeATTRFile( int unit, const osg::Texture2D* texture ) const
 {
     std::string name;
+	//GAJ put remap of name here
     if (_fltOpt->getStripTextureFilePath())
         name = osgDB::getSimpleFileName( texture->getImage()->getFileName() );
-    else
+	else if (_fltOpt->getRemapTextureFilePath())
+	{
+#if 0
+		std::string temp = osgDB::getSimpleFileName(texture->getImage()->getFileName());
+		size_t pos = temp.find("_W");
+		if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+		{
+			temp = temp.substr(pos + 1);
+			pos = temp.find("_");
+			if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+			{
+				temp = temp.substr(pos + 1);
+			}
+		}
+		name = _fltOpt->getTextureRemapPredicate() + temp;
+#else
+		name = texture->getImage()->getFileName();
+#endif
+	}
+	else
         name = texture->getImage()->getFileName();
     name += std::string( ".attr" );
 

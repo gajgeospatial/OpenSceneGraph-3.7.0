@@ -1440,7 +1440,8 @@ StateAttribute::GLModeValue StateSet::getTextureMode(unsigned int unit,StateAttr
 {
     if (getTextureGLModeSet().isTextureMode(mode))
     {
-        if (unit>=_textureModeList.size()) return StateAttribute::INHERIT;
+        if (unit >= _textureModeList.size()) 
+			return StateAttribute::INHERIT;
         return getMode(_textureModeList[unit],mode);
     }
     else

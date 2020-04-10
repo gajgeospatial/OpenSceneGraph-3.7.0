@@ -1,0 +1,420 @@
+#pragma once
+// Copyright (c) 2016-2017 Visual Awareness Technologies and Consulting Inc, St Petersburg FL
+// This file is based on the Common Database (CDB) Specification for USSOCOM
+// Version 3.0 – October 2008
+
+// CDB_Tile is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// CDB_Tile is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+
+// You should have received a copy of the GNU Lesser General Public License
+// along with CDB_Tile.  If not, see <http://www.gnu.org/licenses/>.
+
+// 2015 GAJ Geospatial Enterprises, Orlando FL
+// Modified for General Incorporation of Common Database (CDB) support within osgEarth
+//
+#include "cdbglobals/cdbGlobals_Library.h"
+#include <gdal_priv.h>
+#include <sstream>
+#include <iomanip>
+#include <vector>
+#include <map>
+#include <osgDB/FileUtils>
+#include <osgDB/FileNameUtils>
+#include "cdbglobals/ModelFeatureDefs"
+
+#ifdef _MSC_VER
+#if _MSC_VER < 1800
+#define round osg::round
+#endif
+#endif
+
+class GDALDataset;
+struct sqlite3;
+
+
+struct CDB_Tile_Extent
+{
+	double	North;
+	double	South;
+	double	East;
+	double	West;
+	CDB_Tile_Extent() : North(0.0), South(0.0), East(0.0), West(0.0)
+	{
+	}
+	CDB_Tile_Extent(double n, double s, double e, double w) : North(n), South(s), East(e), West(w)
+	{
+	}
+	bool Contains(double x, double y)
+	{
+		if ((x >= West) && (x <= East) && (y >= South) && (y <= North))
+			return true;
+		else
+			return false;
+	}
+	void Center(double &Lat, double &Lon)
+	{
+		Lat = (South + North) * 0.5;
+		Lon = (West + East) * 0.5;
+	}
+	void Set_Extent(double n, double s, double e, double w)
+	{
+		North = n;
+		South = s;
+		East = e;
+		West = w;
+	}
+};
+
+typedef CDB_Tile_Extent * CDB_Tile_ExtentP;
+typedef std::vector<CDB_Tile_ExtentP> CDB_Tile_ExtentPV;
+
+struct GSMediaKeyStruct
+{
+	int	LODNum;
+	int	UrefNum;
+	int	RrefNum;
+	GSMediaKeyStruct(int lod, int uref, int rref) : LODNum(lod), UrefNum(uref), RrefNum(rref)
+	{
+	};
+	GSMediaKeyStruct() : LODNum(-1), UrefNum(-1), RrefNum(-1)
+	{
+	};
+	bool operator==(GSMediaKeyStruct &keyvalue)
+	{
+		if ((LODNum == keyvalue.LODNum) &&
+			(UrefNum == keyvalue.UrefNum) &&
+			(RrefNum == keyvalue.RrefNum))
+			return true;
+		else
+			return false;
+	}
+	bool operator>(GSMediaKeyStruct &keyvalue)
+	{
+		if (keyvalue.LODNum == LODNum)
+		{
+			if (keyvalue.UrefNum == UrefNum)
+			{
+				if (keyvalue.RrefNum == RrefNum)
+					return false;
+				else
+					return keyvalue.RrefNum > RrefNum;
+			}
+			else
+				return keyvalue.UrefNum > UrefNum;
+		}
+		else
+			return keyvalue.LODNum > LODNum;
+	}
+	bool operator<(GSMediaKeyStruct &keyvalue)
+	{
+		if (keyvalue.LODNum == LODNum)
+		{
+			if (keyvalue.UrefNum == UrefNum)
+			{
+				if (keyvalue.RrefNum == RrefNum)
+					return false;
+				else
+					return keyvalue.RrefNum < RrefNum;
+			}
+			else
+				return keyvalue.UrefNum < UrefNum;
+		}
+		else
+			return keyvalue.LODNum < LODNum;
+	}
+	std::string ToString(void)
+	{
+		std::string KeyString = std::to_string(LODNum) + "_" + std::to_string(UrefNum) + "_" + std::to_string(RrefNum);
+		return KeyString;
+	}
+
+};
+typedef GSMediaKeyStruct GSMediaKey;
+
+struct GSMediaMemoryStruct
+{
+	char * bufferdata;
+	int	   bufsize;
+	GSMediaMemoryStruct() : bufferdata(NULL), bufsize(0)
+	{
+	};
+};
+typedef GSMediaMemoryStruct GSMediaMemory;
+
+
+typedef enum
+{
+	GSGeometry = 0,
+	GSTexture = 1,
+	GTGeometry = 2,
+	GTTexture = 3,
+	GSInvalid = 4,
+}GSTableType;
+
+typedef enum
+{
+	ConnGPKG = 0,
+	ConnWFS = 1,
+	ConnNone = 2,
+	ConnOther = 3,
+}GBLConnectionType;
+
+struct ModelOgrTileStruct
+{
+	__int64		tileKey;
+	std::string TileFileName;
+	CDB_Tile_Extent	TileExtent;
+	GDALDataset *	ogrDataset;
+
+	GBLConnectionType ConType;
+	bool ownDataSet;
+	ModelOgrTileStruct(__int64 key, std::string name) :tileKey(key), TileFileName(name), ogrDataset(NULL), ConType(ConnOther), ownDataSet(false)
+	{
+	}
+	ModelOgrTileStruct() : tileKey(-1), TileFileName(""), ogrDataset(NULL), ConType(ConnOther), ownDataSet(false)
+	{
+	}
+
+	~ModelOgrTileStruct()
+	{
+		if (ogrDataset && ownDataSet)
+		{
+			GDALClose(ogrDataset);
+			ogrDataset = NULL;
+		}
+	}
+
+	bool Contains(double x, double y)
+	{
+		return TileExtent.Contains(x, y);
+	}
+
+	void Set_Extent(double n, double s, double e, double w)
+	{
+		TileExtent.Set_Extent(n, s, e, w);
+	}
+
+	void Set_Ref(__int64 key)
+	{
+		tileKey = key;
+	}
+
+	__int64 Get_Ref(void)
+	{
+		return tileKey;
+	}
+
+	void SetFileName(std::string name)
+	{
+		TileFileName = name;
+	}
+
+	std::string GetFileName(void)
+	{
+		return TileFileName;
+	}
+
+	GBLConnectionType GetConType(void)
+	{
+		return ConType;
+	}
+
+	GDALDataset * Open(void)
+	{
+		if (ogrDataset)
+			return ogrDataset;
+
+		bool FileExists = osgDB::fileExists(TileFileName);
+		if (FileExists && (TileFileName.find(".gpkg") != std::string::npos))
+		{
+			//		GDALOpenInfo oOpenInfoP(m_FileName.c_str(), GA_ReadOnly | GDAL_OF_VECTOR);
+			//		m_GDAL.poDataset = m_GDAL.poDriver->pfnOpen(&oOpenInfoP);
+			char * drivers[2];
+			drivers[0] = "GPKG";
+			drivers[1] = NULL;
+			ogrDataset = (GDALDataset *)GDALOpenEx(TileFileName.c_str(), GDAL_OF_VECTOR | GA_ReadOnly | GDAL_OF_SHARED, drivers, NULL, NULL);
+			ConType = ConnGPKG;
+			if (ogrDataset)
+				ownDataSet = true;
+		}
+		else
+		{
+			//Add Check for WFS dataset
+			ogrDataset = (GDALDataset *)GDALOpenEx(TileFileName.c_str(), GDAL_OF_VECTOR | GA_ReadOnly | GDAL_OF_SHARED, NULL, NULL, NULL);
+			if (ogrDataset)
+				ownDataSet = true;
+		}
+		return ogrDataset;
+	}
+
+	void SetOgrWFSDataset(GDALDataset * ds)
+	{
+		if (ogrDataset && ownDataSet)
+		{
+			GDALClose(ogrDataset);
+			ogrDataset = NULL;
+			ownDataSet = false;
+		}
+		if (ds)
+		{
+			ogrDataset = ds;
+			ownDataSet = false;
+		}
+	}
+
+	GDALDataset * Get_Dataset(void)
+	{
+		return ogrDataset;
+	}
+};
+typedef ModelOgrTileStruct ModelOgrTile;
+typedef ModelOgrTile* ModelOgrTileP;
+typedef std::vector<ModelOgrTileP> ModelOgrTilePV;
+
+class CDBGLOBALLIBRARYAPI CDB_Global
+{
+public:
+
+	CDB_Global();
+	~CDB_Global();
+
+	//General Global Controls
+	void Set_BaseMapLodNum(int num);
+	int BaseMapLodNum(void);
+	void Set_EnableBathymetry(bool value);
+	bool EnableBathymetry(void);
+	void Set_LOD0_GS_FullStack(bool value);
+	bool LOD0_GS_FullStack(void);
+	void Set_LOD0_GT_FullStack(bool value);
+	bool LOD0_GT_FullStack(void);
+	void Set_CDB_Tile_Be_Verbose(bool value);
+	bool CDB_Tile_Be_Verbose(void);
+
+	//Global Content Data
+	bool Open_Vector_File(std::string FileName);
+	GDALDataset * Get_Dataset(void);
+	bool Has_Layer(std::string LayerName, __int64 tileKey = 0);
+	bool Load_Media(const std::string MediaId, __int64 tileKey = 0);
+	bool Get_Media(const std::string &mediaId, std::stringstream &fin);
+	void Check_Done(void);
+	GBLConnectionType Get_ConnectionType(void);
+	void Set_GlobalTileLOD(int lod);
+	int Get_GlobalTileLOD(void);
+	void AddVectorTile(ModelOgrTileP Tile);
+	bool HasVectorTile(__int64 TileKey);
+	ModelOgrTileP GetVectorTile(__int64 TileKey);
+
+	ModelOgrTileP FindVectorTile(double lat, double lon);
+	std::string ToWFSLayer(std::string LayerName, int spos = 4);
+
+	static CDB_Global * getInstance(void);
+
+private:
+
+	int s_BaseMapLodNum;
+	bool s_EnableBathymetry;
+	bool s_LOD0_GS_FullStack;
+	bool s_LOD0_GT_FullStack;
+	bool s_CDB_Tile_Be_Verbose;
+
+	int  m_GlobalTileLOD;
+	GBLConnectionType m_ConType;
+	GDALDataset *	m_ogrDataset;
+	std::string		m_GlobalFileName;
+
+	std::map<std::string, GSMediaMemory> m_GSGeometryMap;
+	std::map<std::string, GSMediaMemory> m_GSTextureMap;
+
+	GSMediaMemory m_GTGeometry;
+	GSMediaMemory m_GTTexture;
+
+	ModelOgrTilePV m_TileVectorMap;
+	
+	std::vector<std::string> m_doneList;
+	std::vector<std::string> m_WFSLayerList;
+	bool ParseGSKey(const std::string &mediaId, GSMediaKey &Key, std::string &gpkgtablename, GSTableType &TableType);
+
+	bool Add_Media_to_Map(GSMediaKey MyKey, std::string gpkgTableName, GSTableType TableType, __int64 tileKey);
+
+
+};
+
+typedef enum
+{
+	NO_IE_Test = 0,
+	OGC_CDB_Core = 1,
+	VATC_Test_1 = 2,
+	IE_Unknown_Test = 3,
+}OGC_CDB_Test_Type;
+
+typedef enum
+{
+	Imagery = 0,
+	Elevation = 1,
+	ImageryCache = 2,
+	ElevationCache = 3,
+	GeoPackageMap = 4,
+	GeoPackageFootPrint = 5,
+	GeoSpecificModel = 6,
+	GeoTypicalModel = 7,
+	CDB_Unknown = 11
+}CDB_Tile_Type;
+
+class CDBGLOBALLIBRARYAPI OGC_IE_Tracking
+{
+public:
+	OGC_IE_Tracking(void);
+	virtual ~OGC_IE_Tracking(void);
+
+	void Init_Times(void);
+	void Set_Test(OGC_CDB_Test_Type test);
+	OGC_CDB_Test_Type Get_Test(void);
+
+	void StartTile(CDB_Tile_Type tt);
+	void EndTile(CDB_Tile_Type tt, size_t Feature_Count);
+	void StartTileLoad(CDB_Tile_Type tt);
+	void EndTileLoad(CDB_Tile_Type tt, size_t Feature_Count);
+
+	static OGC_IE_Tracking * getInstance();
+
+private:
+	time_t	m_Time_at_Run_Start;
+	time_t	m_Time_at_Run_End;
+
+	time_t	m_Time_at_GS_Tile_Start;
+	time_t  m_Time_at_GS_Tile_End;
+	size_t	m_GS_Tile_Count;
+	size_t  m_GS_Feature_Count;
+	time_t	m_Average_GS_Tile_Load_Time;
+	time_t	m_Total_GS_Tile_Load_Time;
+
+	time_t	m_Time_at_GT_Tile_Start;
+	time_t  m_Time_at_GT_Tile_End;
+	size_t	m_GT_Tile_Count;
+	size_t  m_GT_Feature_Count;
+	time_t	m_Average_GT_Tile_Load_Time;
+	time_t	m_Total_GT_Tile_Load_Time;
+
+	time_t	m_Time_at_GS_TileLoad_Start;
+	time_t  m_Time_at_GS_TileLoad_End;
+	size_t	m_GS_TileLoad_Count;
+	size_t  m_GS_FeatureLoad_Count;
+	time_t	m_Average_GS_TileLoad_Load_Time;
+	time_t	m_Total_GS_TileLoad_Load_Time;
+
+	time_t	m_Time_at_GT_TileLoad_Start;
+	time_t  m_Time_at_GT_TileLoad_End;
+	size_t	m_GT_TileLoad_Count;
+	size_t  m_GT_FeatureLoad_Count;
+	time_t	m_Average_GT_TileLoad_Load_Time;
+	time_t	m_Total_GT_TileLoad_Load_Time;
+
+	OGC_CDB_Test_Type m_OGC_Test_Type;
+};

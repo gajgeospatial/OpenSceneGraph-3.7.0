@@ -288,8 +288,10 @@ void Referenced::signalObserversAndDelete(bool signalDelete, bool doDelete) cons
         if (_refCount!=0)
             OSG_NOTICE<<"Warning Referenced::signalObserversAndDelete(,,) doing delete with _refCount="<<_refCount<<std::endl;
 
-        if (getDeleteHandler()) deleteUsingDeleteHandler();
-        else delete this;
+        if (getDeleteHandler()) 
+			deleteUsingDeleteHandler();
+        else 
+			delete this;
     }
 }
 

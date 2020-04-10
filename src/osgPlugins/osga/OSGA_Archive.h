@@ -42,7 +42,7 @@ class OSGA_Archive : public osgDB::Archive
         virtual bool open(std::istream& fin);
 
         /** close the archive.*/
-        virtual void close();
+        virtual void close(bool forceall = false);
 
         /** Get the file name which represents the archived file.*/
         virtual std::string getArchiveFileName() const { return _archiveFileName; }

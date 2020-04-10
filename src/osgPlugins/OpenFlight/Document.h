@@ -27,7 +27,9 @@
 #include <osg/PolygonOffset>
 #include <osg/Depth>
 #include <osgDB/ReaderWriter>
+#include <osgDB/Archive>
 #include <osgDB/Options>
+#include <osgDB/FileNameUtils>
 
 #include "Types.h"
 #include "Record.h"
@@ -87,6 +89,17 @@ enum Ellipsoid {
     NAD_1927 = 4
 };
 
+struct EArchives
+{
+	osg::ref_ptr<osgDB::Archive> _Archive;
+	std::string					 _Archive_FileName;
+	std::string					 _Archive_KeyName;
+	osgDB::Archive::FileNameList _Archive_FileList;
+	EArchives() : _Archive(NULL), _Archive_FileName(""), _Archive_KeyName("")
+	{
+
+	}
+};
 
 class Document
 {
@@ -199,11 +212,42 @@ class Document
         void setKeepExternalReferences( bool flag) { _keepExternalReferences=flag; }
         bool getKeepExternalReferences() const { return _keepExternalReferences; }
 
-        void setReadObjectRecordData(bool flag) { _readObjectRecordData = flag; }
+		//Option requred to read Common Database (CDB) model as per specification
+		void setTextureInArchive(bool flag) { _textureInarchive = flag; }
+		bool getTextureInArchive() const { return _textureInarchive; }
+		//Option for in production Common Database (CDB) (models and textures not in archives)
+		void setRemap2Directory(bool flag) { _remap2Directory = flag; }
+		bool getRemap2Directory() const { return _remap2Directory; }
+
+		void setCDB_Verify(bool flag) { _CDB_Verify = flag; }
+		bool getCDB_Verify() const { return _CDB_Verify; }
+
+		void setDDS2PNG(bool flag) { _SwapDDS2PNG = flag; }
+		bool getDDS2PNG() const { return _SwapDDS2PNG; }
+
+		void setCDBModel_Has_Sigsize(bool flag) { _CDBModel_Has_Sigsize = flag; }
+		bool getCDBModel_Has_Sigsize() const { return _CDBModel_Has_Sigsize; }
+
+		void setReadObjectRecordData(bool flag) { _readObjectRecordData = flag; }
         bool getReadObjectRecordData() const { return _readObjectRecordData; }
 
         void setPreserveNonOsgAttrsAsUserData(bool flag) { _preserveNonOsgAttrsAsUserData = flag; }
         bool getPreserveNonOsgAttrsAsUserData() const { return _preserveNonOsgAttrsAsUserData; }
+
+		//Common DataBase (CDB) support functions
+		bool OpenArchive(std::string ArchiveName);
+		std::string ArchiveFileName(void);
+		bool MapTextureName2Archive(std::string &textureName);
+		std::string  archive_findDataFile(std::string &filename);
+		osg::ref_ptr<osg::Image> readArchiveImage(const std::string filename);
+		void archiveRelease(void);
+		std::string archive_findOtherArchive(std::string &filename);
+		bool ParseTexnameToArchive(std::string &Rawtexturename, std::string &ArchiveName, std::string &ArchiveKey, std::string &textureName);
+		bool ArchiveNameFromTexName(std::string &textureName, std::string &ArchiveName);
+
+		bool SetTexture2MapDirectory(std::string DirectoryName, std::string ModelName);
+		bool MapTextureName2Directory(std::string &textureName);
+		bool SetModelExportTextureDirectory(std::string DirectoryName, std::string ModelDirectory);
 
     protected:
 
@@ -219,9 +263,24 @@ class Document
         bool                        _doUnitsConversion;
         bool                        _readObjectRecordData;
         bool                        _preserveNonOsgAttrsAsUserData;
+		bool						_textureInarchive;
+		bool						_remap2Directory;
+		bool						_CDB_Verify;
+		bool						_CDBModel_Has_Sigsize;
+		bool						_SwapDDS2PNG;
         CoordUnits                  _desiredUnits;
 
         bool                        _keepExternalReferences;
+
+		osg::ref_ptr<osgDB::Archive> _Archive;
+		std::string					 _Archive_FileName;
+		std::string					 _Archive_KeyName;
+		osgDB::Archive::FileNameList _Archive_FileList;
+		std::vector<EArchives>		 _Extended_Archives;
+		osgDB::Archive *			 _ActiveArchive;
+
+		std::string					 _TextureRemapDirectory;
+		std::string					 _ModelHomeDirectory;
 
         friend class Header;
         bool _done;
@@ -262,6 +321,10 @@ class Document
 
         typedef std::map<int,osg::ref_ptr<osg::Node> > InstanceDefinitionMap;
         InstanceDefinitionMap _instanceDefinitionMap;
+
+		bool Validate_Archive_Name(std::string &ArchiveName);
+		bool Have_Ext_Archive(std::string ArchiveName, EArchives &ArchiveRec);
+
 };
 
 

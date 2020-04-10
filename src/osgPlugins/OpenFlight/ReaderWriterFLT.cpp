@@ -26,6 +26,7 @@
 #include <osgDB/ReadFile>
 #include <OpenThreads/ReentrantMutex>
 #include <osgUtil/Optimizer>
+#include <cdbGlobals/cdbGlobals>
 
 #include "Registry.h"
 #include "Document.h"
@@ -249,8 +250,12 @@ class FLTReaderWriter : public ReaderWriter
             supportsOption( "validate", "Export option: If present in the Options string, the plugin does not write an OpenFlight file. Instead, it returns an indication of the scene graph's suitability for OpenFlight export." );
             supportsOption( "tempDir=<dir>", "Export option: Specifies the directory to use for creation of temporary files. If not specified, the directory is taken from the file name. If the file doesn't contain a path, the current working directory is used. Applications should set this to the name of their app-specific temp directory. If the path contains spaces, use double quotes to ensure correct parsing. Examples: \"tempDir=/tmp\", \"tempDir=\"C:\\My Temp Dir\"." );
             supportsOption( "lighting=<ON|OFF>", "Export option: Specifies a default enable/disable state for lighting, for Nodes in the exported scene graph that don't set it explicitly. By default, the exporter assumes lighting is enabled (GL_LIGHTING ON). Set this to either ON or OFF. Example: \"lighting=OFF\"." );
-            supportsOption( "stripTextureFilePath", "Export option: If present in the Options string, the exporter strips the path from texture file names, and writes only the texture file name to the FLT Texture Palette. By default, the exporter doesn't strip the path, and the name written to the Texture Palette is taken directly from the osg::Image object referenced by the osg::Texture2D StateAttribute." );
-        }
+			supportsOption("stripTextureFilePath", "Export option: If present in the Options string, the exporter strips the path from texture file names, and writes only the texture file name to the FLT Texture Palette. By default, the exporter doesn't strip the path, and the name written to the Texture Palette is taken directly from the osg::Image object referenced by the osg::Texture2D StateAttribute.");
+			supportsOption("TextureInArchive", "Import option: If present in the Options string, an archive name is located in the dbpath. When this option is present textures are mapped to and read from the named archive file according to the CDB specification");
+			supportsOption("Remap2Directory", "Import option: If present in the Options string, directory names are parsed from the dbpath. When this option is present textures are mapped to and read from the named directory according to the CDB specification");
+			supportsOption("CDBVerification", "Import option: If present in the Options string, CDB Rules Messages are output durring model load. When this option is present textures are mapped to and read from the named directory according to the CDB specification");
+			supportsOption("Switchdds2png", "Import option: If present in the Options string, if a dds texture is found and a png texture of the same name is found in the search path the png texuter is used");
+		}
 
         virtual const char* className() const { return "FLT Reader/Writer"; }
 
@@ -272,7 +277,69 @@ class FLTReaderWriter : public ReaderWriter
             if (!acceptsExtension(ext)) return ReadResult::FILE_NOT_HANDLED;
 
             std::string fileName = osgDB::findDataFile(file, options);
-            if (fileName.empty()) return ReadResult::FILE_NOT_FOUND;
+			if (fileName.empty())
+			{
+				if (file.find("D500_") != std::string::npos)
+				{
+					if (CDB_Global::getInstance()->Has_Layer("GTModelGeometry_Mda"))
+					{
+						osg::ref_ptr<osgDB::Archive> ar = NULL;
+
+						std::string GeometryArchiveName = "gpkg:GTModelGeometry_Mda.zip";
+						ar = osgDB::openArchive(GeometryArchiveName, osgDB::ReaderWriter::READ);
+						if (ar)
+						{
+							std::string name2find = file.substr(2);
+							std::string modelinArchive = "";
+							osgDB::Archive::FileNameList Archive_FileList;
+							ar->getFileNames(Archive_FileList);
+							for each(std::string name in Archive_FileList)
+							{
+								if (name.find(name2find) != std::string::npos)
+								{
+									modelinArchive = name;
+									break;
+								}
+							}
+							if (!modelinArchive.empty())
+							{
+								// in local cache?
+								{
+									osg::Node* node = flt::Registry::instance()->getExternalFromLocalCache(modelinArchive);
+									if (node)
+									{
+										ar.release();
+										return ReadResult(node, ReaderWriter::ReadResult::FILE_LOADED_FROM_CACHE);
+									}
+								}
+
+								osg::ref_ptr<Options> localoptions = options ? static_cast<Options*>(options->clone(osg::CopyOp::SHALLOW_COPY)) : new Options;
+								std::string modeltextPath = "gpkg:GTModelTexture_Mda.zip";
+								localoptions->setDatabasePath(modeltextPath);
+								std::string options_string = localoptions->getOptionString();
+								if (options_string.empty())
+									options_string = "TextureInArchive";
+								else
+									options_string.append(";TextureInArchive");
+								localoptions->setOptionString(options_string);
+								{
+									ReadResult rr = ar->readNode(modelinArchive,localoptions);
+									ar.release();
+									localoptions = NULL;
+									return rr;
+								}
+
+							}
+						}
+						else
+							return ReadResult::FILE_NOT_FOUND;
+					}
+					else
+						return ReadResult::FILE_NOT_FOUND;
+				}
+				else
+					return ReadResult::FILE_NOT_FOUND;
+			}
 
             // in local cache?
             {
@@ -355,7 +422,19 @@ class FLTReaderWriter : public ReaderWriter
                 document.setKeepExternalReferences((options->getOptionString().find("keepExternalReferences")!=std::string::npos));
                 OSG_DEBUG << readerMsg << "keepExternalReferences=" << document.getKeepExternalReferences() << std::endl;
 
-                document.setPreserveFace((options->getOptionString().find("preserveFace")!=std::string::npos));
+				document.setTextureInArchive((options->getOptionString().find("TextureInArchive") != std::string::npos));
+				OSG_DEBUG << readerMsg << "TextureInArchive=" << document.getTextureInArchive() << std::endl;
+
+				document.setRemap2Directory((options->getOptionString().find("Remap2Directory") != std::string::npos));
+				OSG_DEBUG << readerMsg << "Remap2Directory=" << document.getRemap2Directory() << std::endl;
+
+				document.setCDB_Verify((options->getOptionString().find("CDBVerification") != std::string::npos));
+				OSG_DEBUG << readerMsg << "CDBVerification" << document.getRemap2Directory() << std::endl;
+
+				document.setDDS2PNG((options->getOptionString().find("Switchdds2png") != std::string::npos));
+				OSG_DEBUG << readerMsg << "Switchdds2png" << document.getDDS2PNG() << std::endl;
+
+				document.setPreserveFace((options->getOptionString().find("preserveFace")!=std::string::npos));
                 OSG_DEBUG << readerMsg << "preserveFace=" << document.getPreserveFace() << std::endl;
 
                 document.setPreserveObject((options->getOptionString().find("preserveObject")!=std::string::npos));
@@ -416,6 +495,62 @@ class FLTReaderWriter : public ReaderWriter
                     if (pools->getShaderPool())
                         document.setShaderPool( pools->getShaderPool(), true );
                 }
+
+				if (document.getTextureInArchive())
+				{
+					//Set up to handle CDB models as per (CDB) specification
+					//Using this option overides the remap to directory option if both are set
+					osgDB::FilePathList dbpaths = options->getDatabasePathList();
+					for (osgDB::FilePathList::iterator dbt = dbpaths.begin(); dbt != dbpaths.end(); ++dbt)
+					{
+						std::string aname = *dbt;
+						//Make sure it is a zip file for now
+						//There is an osDB:: general test for being an archive
+						//that can be used if anything other than CDB needs this option in an openflight loader
+						//
+						unsigned int pos = aname.rfind(".zip");
+						if (pos == aname.length() - 4)
+						{
+							if (document.OpenArchive(aname))
+								break;
+						}
+					}
+					document.setRemap2Directory(false);
+				}
+				else if (document.getRemap2Directory())
+				{
+					osgDB::FilePathList dbpaths = options->getDatabasePathList();
+					if (dbpaths.size() >= 2)
+					{
+						std::string directory;
+						std::string fname;
+						bool have_dir = false;
+						bool have_fname = false;
+						for (osgDB::FilePathList::iterator dbt = dbpaths.begin(); dbt != dbpaths.end(); ++dbt)
+						{
+							std::string test = *dbt;
+							if (test.find("301_GSModelTexture") != std::string::npos)
+							{
+								directory = test;
+								have_dir = true;
+							}
+							else if (test.rfind(".flt") != std::string::npos)
+							{
+								fname = test;
+								have_fname = true;
+							}
+
+							if (have_dir && have_fname)
+							{
+								document.SetTexture2MapDirectory(directory, fname);
+								break;
+							}
+						}
+						document.SetModelExportTextureDirectory(dbpaths[1], dbpaths[0]);
+					}					
+					else
+						document.setRemap2Directory(false);
+				}
             }
 
             const int RECORD_HEADER_SIZE = 4;
@@ -523,6 +658,16 @@ class FLTReaderWriter : public ReaderWriter
                     osgUtil::Optimizer::STATIC_OBJECT_DETECTION);
             }
 
+			if (document.getTextureInArchive())
+				document.archiveRelease();
+			if (document.getCDB_Verify())
+			{
+				if (!document.getCDBModel_Has_Sigsize())
+				{
+					OSG_WARN << "Model File did not contain Significant Size Information" << std::endl;
+
+				}
+			}
             return document.getHeaderNode();
         }
 

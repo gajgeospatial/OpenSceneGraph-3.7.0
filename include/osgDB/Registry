@@ -194,15 +194,28 @@ class OSGDB_EXPORT Registry : public osg::Referenced
         const ReadFileCallback* getReadFileCallback() const { return _readFileCallback.get(); }
 
 
-        ReaderWriter::ReadResult openArchive(const std::string& fileName,ReaderWriter::ArchiveStatus status, unsigned int indexBlockSizeHint, const Options* options)
+        ReaderWriter::ReadResult openArchive(const std::string& fileName, ReaderWriter::ArchiveStatus status, unsigned int indexBlockSizeHint, const Options* options)
         {
-            if (options && options->getReadFileCallback()) return options->getReadFileCallback()->openArchive(fileName, status, indexBlockSizeHint, options);
-            else if (_readFileCallback.valid()) return _readFileCallback->openArchive(fileName, status, indexBlockSizeHint, options);
-            else return openArchiveImplementation(fileName, status, indexBlockSizeHint, options);
+            if (options && options->getReadFileCallback()) 
+				return options->getReadFileCallback()->openArchive(fileName, status, indexBlockSizeHint, options);
+            else if (_readFileCallback.valid()) 
+				return _readFileCallback->openArchive(fileName, status, indexBlockSizeHint, options);
+            else 
+				return openArchiveImplementation(fileName, status, indexBlockSizeHint, options);
         }
+
+		bool closeArchive(const std::string & fileName)
+		{
+			return closeArchiveImplementation(fileName);
+		}
+
+		bool closeArchive(osgDB::Archive * ar, bool force);
+
         ReaderWriter::ReadResult openArchiveImplementation(const std::string& fileName, ReaderWriter::ArchiveStatus status, unsigned int indexBlockSizeHint, const Options* options);
 
-        ReaderWriter::ReadResult readObject(const std::string& fileName,const Options* options, bool buildKdTreeIfRequired=true)
+		bool Registry::closeArchiveImplementation(const std::string& fileName);
+	
+		ReaderWriter::ReadResult readObject(const std::string& fileName,const Options* options, bool buildKdTreeIfRequired=true)
         {
             ReaderWriter::ReadResult result;
             if (options && options->getReadFileCallback()) result = options->getReadFileCallback()->readObject(fileName,options);
@@ -484,7 +497,9 @@ class OSGDB_EXPORT Registry : public osg::Referenced
         /** Get an ref_ptr<Archive> from the archive cache.*/
         osg::ref_ptr<osgDB::Archive> getRefFromArchiveCache(const std::string& fileName);
 
-        /** Remove all archives from the archive cache.*/
+		osg::ref_ptr<osgDB::Archive> getAndRemoveRefFromArchiveCache(const std::string& fileName);
+
+		/** Remove all archives from the archive cache.*/
         void clearArchiveCache();
 
          /** If State is non-zero, this function releases OpenGL objects for

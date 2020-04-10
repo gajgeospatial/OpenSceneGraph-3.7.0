@@ -239,18 +239,45 @@ static void load_material_texture(    obj::Model &model,
     if (!filename.empty())
     {
         osg::ref_ptr< osg::Image > image;
-        if ( !model.getDatabasePath().empty() )
-        {
-            // first try with database path of parent.
-            image = osgDB::readRefImageFile(model.getDatabasePath()+'/'+filename, options);
-        }
+		bool tryfind = true;
+		int pass = 0;
+		while (tryfind)
+		{
+			tryfind = false;
+			if (!model.getDatabasePath().empty())
+			{
+				// first try with database path of parent.
+				image = osgDB::readRefImageFile(model.getDatabasePath() + '/' + filename, options);
+			}
 
-        if ( !image.valid() )
-        {
-            // if not already set then try the filename as is.
-            image = osgDB::readRefImageFile(filename, options);
-        }
+			if (!image.valid())
+			{
+				// if not already set then try the filename as is.
+				image = osgDB::readRefImageFile(filename, options);
+			}
 
+			if (!image.valid() && pass == 0)
+			{
+				std::string simplefilename = osgDB::getSimpleFileName(filename);
+				int extpos = simplefilename.find(".");
+				if (extpos != std::string::npos)
+				{
+					std::string nameonly = simplefilename.substr(0, extpos);
+					std::string extention = simplefilename.substr(extpos);
+					int spacepos = extention.find(" ");
+					if (spacepos != std::string::npos)
+					{
+						int namepos = filename.find(extention);
+						if (namepos != std::string::npos)
+						{
+							filename = filename.substr(0,namepos) + extention.substr(0, spacepos);
+							tryfind = true;
+						}
+					}
+				}
+			}
+			++pass;
+		}
         if ( image.valid() )
         {
             osg::Texture2D* texture = new osg::Texture2D( image.get() );

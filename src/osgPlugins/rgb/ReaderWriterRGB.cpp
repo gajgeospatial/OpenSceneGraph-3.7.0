@@ -37,40 +37,9 @@
 
 using namespace osg;
 
-typedef unsigned int size_pos;
 
-struct rawImageRec
+typedef struct _rawImageRec
 {
-    rawImageRec():
-        imagic(0),
-        type(0),
-        dim(0),
-        sizeX(0), sizeY(0), sizeZ(0),
-        min(0), max(0),
-        wasteBytes(0),
-        colorMap(0),
-        file(0),
-        tmp(0), tmpR(0), tmpG(0), tmpB(0), tmpA(0),
-        rleEnd(0),
-        rowStart(0),
-        rowSize(0),
-        swapFlag(0),
-        bpc(0)
-    {
-    }
-
-    ~rawImageRec()
-    {
-        if (tmp) delete [] tmp;
-        if (tmpR) delete [] tmpR;
-        if (tmpG) delete [] tmpG;
-        if (tmpB) delete [] tmpB;
-        if (tmpA) delete [] tmpA;
-
-        if (rowStart) delete [] rowStart;
-        if (rowSize) delete [] rowSize;
-    }
-
     unsigned short imagic;
     unsigned short type;
     unsigned short dim;
@@ -129,12 +98,7 @@ struct rawImageRec
         swapBytes( max );
         swapBytes( colorMap );
     }
-};
-
-struct refImageRec : public rawImageRec, public osg::Referenced
-{
-};
-
+} rawImageRec;
 
 static void ConvertShort(unsigned short *array, long length)
 {
@@ -167,18 +131,41 @@ static void ConvertLong(GLuint *array, long length)
 }
 
 
+static void RawImageClose(rawImageRec *raw)
+{
+    if (raw)
+    {
 
-static osg::ref_ptr<refImageRec> RawImageOpen(std::istream& fin)
+        if (raw->tmp) delete [] raw->tmp;
+        if (raw->tmpR) delete [] raw->tmpR;
+        if (raw->tmpG) delete [] raw->tmpG;
+        if (raw->tmpB) delete [] raw->tmpB;
+        if (raw->tmpA) delete [] raw->tmpA;
+
+        if (raw->rowStart) delete [] raw->rowStart;
+        if (raw->rowSize) delete [] raw->rowSize;
+
+        delete raw;
+    }
+}
+
+
+static rawImageRec *RawImageOpen(std::istream& fin)
 {
     union
     {
         int testWord;
         char testByte[4];
     } endianTest;
-
+    rawImageRec *raw;
     int x;
+	//Determine the file size
+	fin.seekg(0, fin.end);
+	size_t stream_length = fin.tellg();
+	fin.seekg(0, fin.beg);
 
-    osg::ref_ptr<refImageRec> raw = new refImageRec;
+
+    raw = new rawImageRec;
     if (raw == NULL)
     {
         OSG_WARN<< "Out of memory!"<< std::endl;
@@ -198,11 +185,9 @@ static osg::ref_ptr<refImageRec> RawImageOpen(std::istream& fin)
         raw->swapFlag = GL_FALSE;
     }
 
-    fin.read((char*)&(raw->imagic),12);
+    fin.read((char*)raw,12);
     if (!fin.good())
-    {
         return NULL;
-    }
 
     if (raw->swapFlag)
     {
@@ -214,63 +199,87 @@ static osg::ref_ptr<refImageRec> RawImageOpen(std::istream& fin)
     raw->rowSize = 0;
     raw->bpc = (raw->type & 0x00FF);
 
-    raw->tmp = new unsigned char [static_cast<size_pos>(raw->sizeX) * 256 * static_cast<size_pos>(raw->bpc)];
+	//Verify that the file size matches the bytes needed otherwise we will end up with a
+	//memory exception
+	bool rle = (raw->type & 0xFF00) == 0x0100;
+	if (!rle)
+	{
+		size_t streamsizeneeded = (raw->sizeX * raw->sizeY * raw->sizeZ * raw->bpc) + 512;
+		if (streamsizeneeded > stream_length)
+		{
+			return NULL;
+		}
+	}
+
+    raw->tmp = new unsigned char [raw->sizeX*256*raw->bpc];
     if (raw->tmp == NULL )
     {
         OSG_FATAL<< "Out of memory!"<< std::endl;
+        RawImageClose(raw);
         return NULL;
     }
 
     if( raw->sizeZ >= 1 )
     {
-        if( (raw->tmpR = new unsigned char [static_cast<size_pos>(raw->sizeX) * static_cast<size_pos>(raw->bpc)]) == NULL )
+        if( (raw->tmpR = new unsigned char [raw->sizeX*raw->bpc]) == NULL )
         {
             OSG_FATAL<< "Out of memory!"<< std::endl;
+            RawImageClose(raw);
             return NULL;
         }
     }
     if( raw->sizeZ >= 2 )
     {
-        if( (raw->tmpG = new unsigned char [static_cast<size_pos>(raw->sizeX) * static_cast<size_pos>(raw->bpc)]) == NULL )
+        if( (raw->tmpG = new unsigned char [raw->sizeX*raw->bpc]) == NULL )
         {
             OSG_FATAL<< "Out of memory!"<< std::endl;
+            RawImageClose(raw);
             return NULL;
         }
     }
     if( raw->sizeZ >= 3 )
     {
-        if( (raw->tmpB = new unsigned char [static_cast<size_pos>(raw->sizeX) * static_cast<size_pos>(raw->bpc)]) == NULL )
+        if( (raw->tmpB = new unsigned char [raw->sizeX*raw->bpc]) == NULL )
         {
             OSG_FATAL<< "Out of memory!"<< std::endl;
+            RawImageClose(raw);
             return NULL;
         }
     }
     if (raw->sizeZ >= 4)
     {
-        if( (raw->tmpA = new unsigned char [static_cast<size_pos>(raw->sizeX) * static_cast<size_pos>(raw->bpc)]) == NULL )
+        if( (raw->tmpA = new unsigned char [raw->sizeX*raw->bpc]) == NULL )
         {
             OSG_FATAL<< "Out of memory!"<< std::endl;
+            RawImageClose(raw);
             return NULL;
         }
     }
 
-    if ((raw->type & 0xFF00) == 0x0100)
+    if (rle)
     {
-        unsigned int ybyz = static_cast<size_pos>(raw->sizeY) * static_cast<size_pos>(raw->sizeZ);
+        unsigned int ybyz = raw->sizeY * raw->sizeZ;
         if ( (raw->rowStart = new GLuint [ybyz]) == NULL )
         {
             OSG_FATAL<< "Out of memory!"<< std::endl;
+            RawImageClose(raw);
             return NULL;
         }
 
         if ( (raw->rowSize = new GLint [ybyz]) == NULL )
         {
             OSG_FATAL<< "Out of memory!"<< std::endl;
+            RawImageClose(raw);
             return NULL;
         }
         x = ybyz * sizeof(GLuint);
         raw->rleEnd = 512 + (2 * x);
-                fin.seekg(512,std::ios::beg);
+		if (raw->rleEnd > stream_length)
+		{
+			return NULL;
+		}
+
+        fin.seekg(512,std::ios::beg);
         fin.read((char*)raw->rowStart,x);
         fin.read((char*)raw->rowSize,x);
         if (raw->swapFlag)
@@ -278,32 +287,35 @@ static osg::ref_ptr<refImageRec> RawImageOpen(std::istream& fin)
             ConvertLong(raw->rowStart, (long) (x/sizeof(GLuint)));
             ConvertLong((GLuint *)raw->rowSize, (long) (x/sizeof(GLint)));
         }
+		size_t streamsizeneeded = raw->rowStart[ybyz-1] +
+								  raw->rowSize[ybyz-1];
+		if (streamsizeneeded > stream_length)
+		{
+			return NULL;
+		}
+
     }
     return raw;
 }
 
 
-static void RawImageGetRow(rawImageRec& raw, unsigned char *buf, int y, int z)
+static void RawImageGetRow(rawImageRec *raw, unsigned char *buf, int y, int z)
 {
     unsigned char *iPtr, *oPtr;
     unsigned short pixel;
     int count, done = 0;
     unsigned short *tempShort;
 
-    if ((raw.type & 0xFF00) == 0x0100)
+    if ((raw->type & 0xFF00) == 0x0100)
     {
-        size_pos pos = raw.rowStart[static_cast<size_pos>(y)+static_cast<size_pos>(z)*static_cast<size_pos>(raw.sizeY)];
+        raw->file->seekg((long) raw->rowStart[y+z*raw->sizeY], std::ios::beg);
+        raw->file->read((char*)raw->tmp, (unsigned int)raw->rowSize[y+z*raw->sizeY]);
 
-        size_pos amount = raw.rowSize[static_cast<size_pos>(y)+static_cast<size_pos>(z)*static_cast<size_pos>(raw.sizeY)];
-
-        raw.file->seekg(pos, std::ios::beg);
-        raw.file->read((char*)raw.tmp, amount);
-
-        iPtr = raw.tmp;
+        iPtr = raw->tmp;
         oPtr = buf;
         while (!done)
         {
-            if (raw.bpc == 1)
+            if (raw->bpc == 1)
                 pixel = *iPtr++;
             else
             {
@@ -313,15 +325,15 @@ static void RawImageGetRow(rawImageRec& raw, unsigned char *buf, int y, int z)
                 iPtr = reinterpret_cast<unsigned char *>(tempShort);
             }
 
-            if(raw.bpc != 1)
+            if(raw->bpc != 1)
                 ConvertShort(&pixel, 1);
 
             count = (int)(pixel & 0x7F);
 
             // limit the count value to the remiaing row size
-            if ((static_cast<size_pos>(raw.sizeX)*static_cast<size_pos>(raw.bpc)) <= (oPtr - buf))
+            if (raw->sizeX*raw->bpc <= (oPtr - buf))
             {
-                count = static_cast<size_pos>(raw.sizeX) - (oPtr - buf) / static_cast<size_pos>(raw.bpc);
+                count = raw->sizeX - (oPtr - buf) / raw->bpc;
             }
 
             if (count<=0)
@@ -334,7 +346,7 @@ static void RawImageGetRow(rawImageRec& raw, unsigned char *buf, int y, int z)
             {
                 while (count--)
                 {
-                    if(raw.bpc == 1)
+                    if(raw->bpc == 1)
                         *oPtr++ = *iPtr++;
                     else{
                         tempShort = reinterpret_cast<unsigned short*>(iPtr);
@@ -353,7 +365,7 @@ static void RawImageGetRow(rawImageRec& raw, unsigned char *buf, int y, int z)
             }
             else
             {
-                if (raw.bpc == 1)
+                if (raw->bpc == 1)
                 {
                     pixel = *iPtr++;
                 }
@@ -364,11 +376,11 @@ static void RawImageGetRow(rawImageRec& raw, unsigned char *buf, int y, int z)
                     tempShort++;
                     iPtr = reinterpret_cast<unsigned char *>(tempShort);
                 }
-                if(raw.bpc != 1)
+                if(raw->bpc != 1)
                     ConvertShort(&pixel, 1);
                 while (count--)
                 {
-                    if(raw.bpc == 1)
+                    if(raw->bpc == 1)
                         *oPtr++ = pixel;
                     else
                     {
@@ -383,88 +395,82 @@ static void RawImageGetRow(rawImageRec& raw, unsigned char *buf, int y, int z)
     }
     else
     {
-        size_pos pos = static_cast<size_pos>(512)+
-                      (static_cast<size_pos>(y)*static_cast<size_pos>(raw.sizeX)*static_cast<size_pos>(raw.bpc))+
-                      (static_cast<size_pos>(z)*static_cast<size_pos>(raw.sizeX)*static_cast<size_pos>(raw.sizeY)*static_cast<size_pos>(raw.bpc));
-
-        size_pos amount = static_cast<size_pos>(raw.sizeX)*static_cast<size_pos>(raw.bpc);
-
-        raw.file->seekg(pos,std::ios::beg);
-        raw.file->read((char*)buf, amount);
-        if(raw.swapFlag && raw.bpc != 1){
-            ConvertShort(reinterpret_cast<unsigned short*>(buf), raw.sizeX);
+        raw->file->seekg(512+(y*raw->sizeX*raw->bpc)+(z*raw->sizeX*raw->sizeY*raw->bpc),std::ios::beg);
+        raw->file->read((char*)buf, raw->sizeX*raw->bpc);
+        if(raw->swapFlag && raw->bpc != 1){
+            ConvertShort(reinterpret_cast<unsigned short*>(buf), raw->sizeX);
         }
     }
 }
 
 
-static void RawImageGetData(rawImageRec& raw, unsigned char **data )
+static void RawImageGetData(rawImageRec *raw, unsigned char **data )
 {
     unsigned char *ptr;
     int i, j;
     unsigned short *tempShort;
 
     //     // round the width to a factor 4
-    //     int width = (int)(floorf((float)raw.sizeX/4.0f)*4.0f);
-    //     if (width!=raw.sizeX) width += 4;
+    //     int width = (int)(floorf((float)raw->sizeX/4.0f)*4.0f);
+    //     if (width!=raw->sizeX) width += 4;
 
     // byte aligned.
 
-    OSG_INFO<<"raw.sizeX = "<<raw.sizeX<<std::endl;
-    OSG_INFO<<"raw.sizeY = "<<raw.sizeY<<std::endl;
-    OSG_INFO<<"raw.sizeZ = "<<raw.sizeZ<<std::endl;
-    OSG_INFO<<"raw.bpc = "<<raw.bpc<<std::endl;
+    OSG_INFO<<"raw->sizeX = "<<raw->sizeX<<std::endl;
+    OSG_INFO<<"raw->sizeY = "<<raw->sizeY<<std::endl;
+    OSG_INFO<<"raw->sizeZ = "<<raw->sizeZ<<std::endl;
+    OSG_INFO<<"raw->bpc = "<<raw->bpc<<std::endl;
 
-    *data = new unsigned char [(raw.sizeX)*(raw.sizeY)*(raw.sizeZ)*(raw.bpc)];
+    *data = new unsigned char [(raw->sizeX)*(raw->sizeY)*(raw->sizeZ)*(raw->bpc)];
 
     ptr = *data;
-    for (i = 0; i < (int)(raw.sizeY); i++)
+    for (i = 0; i < (int)(raw->sizeY); i++)
     {
-        if( raw.sizeZ >= 1 )
-            RawImageGetRow(raw, raw.tmpR, i, 0);
-        if( raw.sizeZ >= 2 )
-            RawImageGetRow(raw, raw.tmpG, i, 1);
-        if( raw.sizeZ >= 3 )
-            RawImageGetRow(raw, raw.tmpB, i, 2);
-        if( raw.sizeZ >= 4 )
-            RawImageGetRow(raw, raw.tmpA, i, 3);
-        for (j = 0; j < (int)(raw.sizeX); j++)
+        if( raw->sizeZ >= 1 )
+            RawImageGetRow(raw, raw->tmpR, i, 0);
+        if( raw->sizeZ >= 2 )
+            RawImageGetRow(raw, raw->tmpG, i, 1);
+        if( raw->sizeZ >= 3 )
+            RawImageGetRow(raw, raw->tmpB, i, 2);
+        if( raw->sizeZ >= 4 )
+            RawImageGetRow(raw, raw->tmpA, i, 3);
+        for (j = 0; j < (int)(raw->sizeX); j++)
         {
-          if(raw.bpc == 1){
-            if( raw.sizeZ >= 1 )
-                *ptr++ = *(raw.tmpR + j);
-            if( raw.sizeZ >= 2 )
-                *ptr++ = *(raw.tmpG + j);
-            if( raw.sizeZ >= 3 )
-                *ptr++ = *(raw.tmpB + j);
-            if( raw.sizeZ >= 4 )
-                *ptr++ = *(raw.tmpA + j);
+          if(raw->bpc == 1){
+            if( raw->sizeZ >= 1 )
+                *ptr++ = *(raw->tmpR + j);
+            if( raw->sizeZ >= 2 )
+                *ptr++ = *(raw->tmpG + j);
+            if( raw->sizeZ >= 3 )
+                *ptr++ = *(raw->tmpB + j);
+            if( raw->sizeZ >= 4 )
+                *ptr++ = *(raw->tmpA + j);
           }else{
-            if( raw.sizeZ >= 1 )
+            if( raw->sizeZ >= 1 )
             {
                 tempShort = reinterpret_cast<unsigned short*>(ptr);
-                *tempShort = *(reinterpret_cast<unsigned short*>(raw.tmpR) + j);
+                *tempShort = *(reinterpret_cast<unsigned short*>(raw->tmpR) + j);
                 tempShort++;
                 ptr = reinterpret_cast<unsigned char *>(tempShort);
             }
-            if( raw.sizeZ >= 2 )
+            if( raw->sizeZ >= 2 )
             {
                 tempShort = reinterpret_cast<unsigned short*>(ptr);
-                *tempShort = *(reinterpret_cast<unsigned short*>(raw.tmpG) + j);
+                *tempShort = *(reinterpret_cast<unsigned short*>(raw->tmpG) + j);
                 tempShort++;
                 ptr = reinterpret_cast<unsigned char *>(tempShort);
             }
-            if( raw.sizeZ >= 3 )
+            if( raw->sizeZ >= 3 )
             {
                 tempShort = reinterpret_cast<unsigned short*>(ptr);
-                *tempShort = *(reinterpret_cast<unsigned short*>(raw.tmpB) + j);
+                *tempShort = *(reinterpret_cast<unsigned short*>(raw->tmpB) + j);
                 tempShort++;
                 ptr = reinterpret_cast<unsigned char *>(tempShort);
             }
-            if( raw.sizeZ >= 4 )
+            if( raw->sizeZ >= 4 )
             {
                 tempShort = reinterpret_cast<unsigned short*>(ptr);
-                *tempShort = *(reinterpret_cast<unsigned short*>(raw.tmpA) + j);
+                *tempShort = *(reinterpret_cast<unsigned short*>(raw->tmpA) + j);
                 tempShort++;
                 ptr = reinterpret_cast<unsigned char *>(tempShort);
             }
@@ -494,7 +500,7 @@ class ReaderWriterRGB : public osgDB::ReaderWriter
 
         ReadResult readRGBStream(std::istream& fin) const
         {
-            osg::ref_ptr<refImageRec> raw;
+            rawImageRec *raw;
 
             if( (raw = RawImageOpen(fin)) == NULL )
             {
@@ -504,7 +510,7 @@ class ReaderWriterRGB : public osgDB::ReaderWriter
             int s = raw->sizeX;
             int t = raw->sizeY;
             int r = 1;
-
+        
             unsigned int pixelFormat =
                 raw->sizeZ == 1 ? GL_LUMINANCE :
                 raw->sizeZ == 2 ? GL_LUMINANCE_ALPHA :
@@ -517,7 +523,8 @@ class ReaderWriterRGB : public osgDB::ReaderWriter
               GL_UNSIGNED_SHORT;
 
             unsigned char *data;
-            RawImageGetData(*raw, &data);
+            RawImageGetData(raw, &data);
+            RawImageClose(raw);
 
             Image* image = new Image();
             image->setImage(s,t,r,
@@ -609,11 +616,7 @@ class ReaderWriterRGB : public osgDB::ReaderWriter
             raw.min = 0;
             raw.max = 0xFF;
             raw.wasteBytes = 0;
-
-            size_t name_size = sizeof(raw.name)-1;
-            strncpy( raw.name, name.c_str(), name_size);
-            raw.name[name_size] = 0;
-
+            strncpy( raw.name, name.c_str(), 80);
             raw.colorMap = 0;
             raw.bpc = (img.getPixelSizeInBits()/raw.sizeZ)/8;
 
@@ -698,9 +701,6 @@ class ReaderWriterRGB : public osgDB::ReaderWriter
 
         virtual WriteResult writeImage(const osg::Image &img,const std::string& fileName, const osgDB::ReaderWriter::Options*) const
         {
-            std::string ext = osgDB::getFileExtension(fileName);
-            if (!acceptsExtension(ext)) return WriteResult::FILE_NOT_HANDLED;
-
             if (img.isCompressed())
             {
                 OSG_NOTICE<<"Warning: RGB plugin does not supporting writing compressed imagery."<<std::endl;
@@ -711,6 +711,9 @@ class ReaderWriterRGB : public osgDB::ReaderWriter
                 OSG_NOTICE<<"Warning: RGB plugin does not supporting writing non contiguous imagery."<<std::endl;
                 return WriteResult::ERROR_IN_WRITING_FILE;
             }
+
+            std::string ext = osgDB::getFileExtension(fileName);
+            if (!acceptsExtension(ext)) return WriteResult::FILE_NOT_HANDLED;
 
             osgDB::ofstream fout(fileName.c_str(), std::ios::out | std::ios::binary);
             if(!fout) return WriteResult::ERROR_IN_WRITING_FILE;

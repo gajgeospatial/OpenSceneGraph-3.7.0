@@ -246,16 +246,34 @@ FltExportVisitor::writeFace( const osg::Geode& geode, const osg::Geometry& geom,
     int16 textureIndex( -1 );
     if (isTextured( 0, geom ))
     {
-        const osg::Texture2D* texture = static_cast<const osg::Texture2D*>(
-            ss->getTextureAttribute( 0, osg::StateAttribute::TEXTURE )  );
-        if (texture != NULL)
-            textureIndex = _texturePalette->add( 0, texture );
-        else
-        {
-            std::string warning( "fltexp: Face is textured, but Texture2D StateAttribute is NULL." );
-            OSG_WARN << warning << std::endl;
-            _fltOpt->getWriteResult().warn( warning );
-        }
+#ifdef _WriteTexFromSetState
+		int ntx = ss->getNumTextureModeLists();
+		for (int i = 0; i < ntx; ++i)
+		{
+			const osg::Texture2D* texture = static_cast<const osg::Texture2D*>(
+				ss->getTextureAttribute(i, osg::StateAttribute::TEXTURE));
+			if (texture != NULL)
+				textureIndex = _texturePalette->add(i, texture);
+			else
+			{
+				std::string warning("fltexp: Face is textured, but Texture2D StateAttribute is NULL.");
+				OSG_WARN << warning << std::endl;
+				_fltOpt->getWriteResult().warn(warning);
+			}
+		}
+#else
+		const osg::Texture2D* texture = static_cast<const osg::Texture2D*>(
+			ss->getTextureAttribute(0, osg::StateAttribute::TEXTURE));
+		if (texture != NULL)
+			textureIndex = _texturePalette->add(0, texture);
+		else
+		{
+			//Note SECore models are throughing this message on export
+			std::string warning("fltexp: Face is textured, but Texture2D StateAttribute is NULL.");
+			OSG_WARN << warning << std::endl;
+			_fltOpt->getWriteResult().warn(warning);
+		}
+#endif
     }
 
     // Set the appropriate template mode based
@@ -278,14 +296,30 @@ FltExportVisitor::writeFace( const osg::Geode& geode, const osg::Geometry& geom,
             templateMode = FIXED_ALPHA_BLENDING;
     }
 
-
+#if _DEBUG
+	int32 IRColor = 0;
+	bool have_IR = geom.getUserValue("<UA:IRC>", IRColor);
+	int16 surface = 0;
+	bool have_SMC = geom.getUserValue("<UA:SMC>", surface);
+	int16 feature = 0;
+	bool have_fid = geom.getUserValue("<UA:FID>", feature);
+#else
+	int32 IRColor = 0;
+	geom.getUserValue("<UA:IRC>", IRColor);
+	int16 surface = 0;
+	geom.getUserValue("<UA:SMC>", surface);
+	int16 feature = 0;
+	geom.getUserValue("<UA:FID>", feature);
+#endif
     uint16 length( 80 );
     IdHelper id( *this, geode.getName() );
-
+#ifdef _DEBUG
+	std::string name = geode.getName();
+#endif
     _records->writeInt16( (int16) FACE_OP );
     _records->writeUInt16( length );
     _records->writeID( id );
-    _records->writeInt32( 0 ); // IR color code
+    _records->writeInt32( IRColor ); // IR color code
     _records->writeInt16( 0 ); // Relative priority
     _records->writeInt8( drawType ); // Draw type
     _records->writeInt8( 0 ); // Texture white
@@ -296,8 +330,8 @@ FltExportVisitor::writeFace( const osg::Geode& geode, const osg::Geometry& geom,
     _records->writeInt16( -1 ); // Detail texture pattern index
     _records->writeInt16( textureIndex ); // Texture pattern index
     _records->writeInt16( materialIndex ); // Material index
-    _records->writeInt16( 0 ); // Surface material code
-    _records->writeInt16( 0 ); // Feature ID
+    _records->writeInt16( surface ); // Surface material code
+    _records->writeInt16( feature ); // Feature ID
     _records->writeInt32( 0 ); // IR material code
     _records->writeUInt16( transparency ); // Transparency
     _records->writeInt8( 0 ); // LOD generation control
@@ -421,17 +455,36 @@ FltExportVisitor::writeMesh( const osg::Geode& geode, const osg::Geometry& geom 
     int16 textureIndex( -1 );
     if (isTextured( 0, geom ))
     {
-        const osg::Texture2D* texture = static_cast<const osg::Texture2D*>(
-            ss->getTextureAttribute( 0, osg::StateAttribute::TEXTURE )  );
-        if (texture != NULL)
-            textureIndex = _texturePalette->add( 0, texture );
-        else
-        {
-            std::string warning( "fltexp: Mesh is textured, but Texture2D StateAttribute is NULL." );
-            OSG_WARN << warning << std::endl;
-            _fltOpt->getWriteResult().warn( warning );
-        }
-    }
+#ifdef _WriteTexFromSetState
+		int ntx = ss->getNumTextureModeLists();
+		for (int i = 0; i < ntx; ++i)
+		{
+			const osg::Texture2D* texture = static_cast<const osg::Texture2D*>(
+				ss->getTextureAttribute(i, osg::StateAttribute::TEXTURE));
+			if (texture != NULL)
+				textureIndex = _texturePalette->add(i, texture);
+			else
+			{
+				std::string warning("fltexp: Face is textured, but Texture2D StateAttribute is NULL.");
+				OSG_WARN << warning << std::endl;
+				_fltOpt->getWriteResult().warn(warning);
+			}
+		}
+#else
+		const osg::Texture2D* texture = static_cast<const osg::Texture2D*>(
+			ss->getTextureAttribute(0, osg::StateAttribute::TEXTURE));
+		if (texture != NULL)
+			textureIndex = _texturePalette->add(0, texture);
+		else
+		{
+			//Note SECore models are throughing this message on export
+			std::string warning("fltexp: Face is textured, but Texture2D StateAttribute is NULL.");
+			OSG_WARN << warning << std::endl;
+			_fltOpt->getWriteResult().warn(warning);
+		}
+#endif
+
+	}
 
     // Set the appropriate template mode based
     // on blending or Billboarding.
@@ -455,13 +508,29 @@ FltExportVisitor::writeMesh( const osg::Geode& geode, const osg::Geometry& geom 
 
 
     uint16 length( 84 );
+	std::string name = geode.getName();
     IdHelper id( *this, geode.getName() );
 
+#ifdef _DEBUG
+	int32 IRColor = 0;
+	bool have_IR = geom.getUserValue("<UA:IRC>", IRColor);
+	int16 surface = 0;
+	bool have_SMC = geom.getUserValue("<UA:SMC>", surface);
+	int16 feature = 0;
+	bool have_fid = geom.getUserValue("<UA:FID>", feature);
+#else
+	int32 IRColor = 0;
+	geom.getUserValue("<UA:IRC>", IRColor);
+	int16 surface = 0;
+	geom.getUserValue("<UA:SMC>", surface);
+	int16 feature = 0;
+	geom.getUserValue("<UA:FID>", feature);
+#endif
     _records->writeInt16( (int16) MESH_OP );
     _records->writeUInt16( length );
     _records->writeID( id );
     _records->writeInt32( 0 ); // Reserved
-    _records->writeInt32( 0 ); // IR color code
+    _records->writeInt32( IRColor ); // IR color code
     _records->writeInt16( 0 ); // Relative priority
     _records->writeInt8( drawType ); // Draw type
     _records->writeInt8( 0 ); // Texture white
@@ -472,8 +541,8 @@ FltExportVisitor::writeMesh( const osg::Geode& geode, const osg::Geometry& geom 
     _records->writeInt16( -1 ); // Detail texture pattern index
     _records->writeInt16( textureIndex ); // Texture pattern index
     _records->writeInt16( materialIndex ); // Material index
-    _records->writeInt16( 0 ); // Surface material code
-    _records->writeInt16( 0 ); // Feature ID
+    _records->writeInt16( surface ); // Surface material code
+    _records->writeInt16( feature ); // Feature ID
     _records->writeInt32( 0 ); // IR material code
     _records->writeUInt16( transparency ); // Transparency
     _records->writeInt8( 0 ); // LOD generation control

@@ -57,6 +57,17 @@ public:
         NAUTICAL_MILES
     };
 
+	enum CDB_Remap_Option
+	{
+		NoOption = 0,
+		GeoSpecific = 1,
+		GeoSpecific32 = 2,
+		GeoTypical = 3,
+		GeoTypical32 = 4,
+		ToRGB = 5,
+		ToRGBwEdit = 6,
+	};
+
     void setFlightFileVersionNumber( int num ) { _version = num; }
     int getFlightFileVersionNumber() const { return _version; }
 
@@ -72,10 +83,20 @@ public:
     void setLightingDefault( bool lighting ) { _lightingDefault = lighting; }
     bool getLightingDefault() const { return _lightingDefault; }
 
-    void setStripTextureFilePath( bool strip ) { _stripTextureFilePath = strip; }
-    bool getStripTextureFilePath() const { return _stripTextureFilePath; }
+	void setStripTextureFilePath(bool strip) { _stripTextureFilePath = strip; }
+	bool getStripTextureFilePath() const { return _stripTextureFilePath; }
 
-    FltWriteResult & getWriteResult() const { return( wr_ ); }
+	void setRemapTextureFilePath(CDB_Remap_Option remap) { _remapTextureFilePath = remap; }
+	CDB_Remap_Option getRemapTextureFilePath() const { return _remapTextureFilePath; }
+
+	void setTextureRemapPredicate(std::string Predicate) { _TextureRemapPredicate = Predicate; }
+	std::string getTextureRemapPredicate() const { return _TextureRemapPredicate; }
+
+	void setCDBVersion(std::string Version) { _CDBVersionValue = Version; }
+	std::string getCDBVersion() const { return _CDBVersionValue; }
+
+ // GAJ put Remap texture option here
+	FltWriteResult & getWriteResult() const { return( wr_ ); }
 
     // Parse the OptionString and override values based on
     //   what was set in the OptionString.
@@ -88,6 +109,9 @@ protected:
     std::string _tempDir;
     bool _lightingDefault;
     bool _stripTextureFilePath;
+	CDB_Remap_Option _remapTextureFilePath;
+
+	std::string _TextureRemapPredicate;
 
     mutable FltWriteResult wr_;
 
@@ -97,6 +121,9 @@ protected:
     static std::string _tempDirOption;
     static std::string _lightingOption;
     static std::string _stripTextureFilePathOption;
+	static std::string _RemapTex2Directory;
+	static std::string _CDBVersionValue;
+	static std::string _CDBVersion;
 };
 
 }

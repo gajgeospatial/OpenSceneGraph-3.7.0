@@ -23,7 +23,7 @@ class ZipArchive : public osgDB::Archive
         virtual bool acceptsExtension(const std::string& /*extension*/) const { return true; }
 
         /** close the archive.*/
-        virtual void close();
+        virtual void close(bool forceall = false);
 
         /** open the archive.*/
         virtual bool open(const std::string& filename, ArchiveStatus status, const osgDB::ReaderWriter::Options* options);

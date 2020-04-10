@@ -38,7 +38,7 @@ class OSGDB_EXPORT Archive : public ReaderWriter
         virtual bool acceptsExtension(const std::string& /*extension*/) const { return true; }
 
         /** close the archive.*/
-        virtual void close() = 0;
+        virtual void close(bool forceall = false) = 0;
 
         /** Get the file name which represents the archived file.*/
         virtual std::string getArchiveFileName() const = 0;
@@ -81,6 +81,11 @@ OSGDB_EXPORT Archive* openArchive(const std::string& filename, ReaderWriter::Arc
 
 /** Open an archive for reading or writing.*/
 OSGDB_EXPORT Archive* openArchive(const std::string& filename, ReaderWriter::ArchiveStatus status, unsigned int indexBlockSizeHint,Options* options);
+
+OSGDB_EXPORT bool closeArchive(const std::string& filename);
+
+OSGDB_EXPORT bool closeArchive(osgDB::Archive * ar, bool force);
+
 }
 
 #endif // OSGDB_ARCHIVE
