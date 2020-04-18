@@ -1,106 +1,21 @@
-doc/all_Doxyfile
-doc/auto_Doxyfile
-doc/core_Doxyfile
-doc/openscenegraph.doxyfile
-doc/openthreads.doxyfile
-
-doc/OpenSceneGraphReferenceDocs/
-doc/OpenThreadsReferenceDocs/
-
-cmake_uninstall.cmake
-
-include/OpenThreads/Config
-include/OpenThreads/Version
-include/osg/Config
-include/osg/GL
-include/osg/Version
-include/osgQt/Version
-src/osgQt/__
-
-lib/
-bin/
-
-*.pc
-*.conf
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Makefile
-cmake_install.cmake
-install_manifest*.txt
-
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Automatically generated Package files
-packaging/cmake/*
-configure/*
-
-# Platform Specifics - auto generated files
-PlatformSpecifics/Windows/*.rc
-
-# Visual studio - project files
-*.sln
+vc100
+vc110
+vc120
+vc140
+vc141
+.vs
+**/bin/*
+**/release/*
+**/debug/*
+**/*.dir
+**/*.sdf
+**/*.VC.db
+**/ipch*
+CDB_Builder.VC.VC.opendb
 *.suo
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
-
-# Visual Studio - Build Results
-[Dd]ebug/
-[Rr]elease/
-[Mm]in[Ss]ize[Rr]el/
-[Rr]el[Ww]ith[Dd]eb[Ii]nfo/
-
-# Visual Studio - Browsing Database File
-*.sdf
-*.opensdf
-
-# Visual Studio - Cache/Options Directory
-.vs/
-.vscode/*
-
-#osx xcode
-DerivedData/
-*.DS_Store
-*.build
-*.xcodeproj
-
-#CPACK related files
-CPackConfig-*.cmake
-_CPack_Packages/
-
-#packages
-*.tar.gz
-*.zip
-
-#individual build files
-config.yaml
-_build
+*.suo
+msvc/src/osgPlugins/txp/osgdb_txp.vcxproj.user
+msvc/src/osgPlugins/cfg/osgdb_cfg.vcxproj.user
+msvc/src/osgPlugins/fbx/osgdb_fbx.vcxproj.user
+msvc_applications-examples/examples/osgviewerFLTK/example_osgviewerFLTK.vcxproj.user
+msvc/src/osgPlugins/dw/osgdb_dw.vcxproj.user

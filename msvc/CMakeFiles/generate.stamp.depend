@@ -1,0 +1,164 @@
+# CMake generation dependency list for this directory.
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeLists.txt
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/msvc/CMakeFiles/2.8.12.2/CMakeSystem.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/msvc/CMakeFiles/2.8.12.2/CMakeCCompiler.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/msvc/CMakeFiles/2.8.12.2/CMakeCXXCompiler.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeGenericSystem.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/Platform/Windows.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/Platform/WindowsPaths.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeCInformation.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/Platform/Windows-MSVC.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/msvc/CMakeFiles/2.8.12.2/CMakeRCCompiler.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeRCInformation.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeCXXInformation.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindThreads.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckIncludeFiles.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckLibraryExists.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckSymbolExists.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindOpenGL.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindEGL.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/OsgDetermineWinVersion.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/src/osg/Config.in
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckCXXSourceCompiles.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/src/osg/GL.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/src/osg/Version.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/PlatformSpecifics/Windows/OpenSceneGraphVersionInfo.rc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/Find3rdPartyDependencies.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindFreetype.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/Findilmbase.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindInventor.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindJasper.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindOpenEXR.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindOpenCascade.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindCOLLADA.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindLibXml2.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindZLIB.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindFBX.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindZLIB.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindOpenVRML.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindGDAL.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindGTA.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPkgConfig.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindCURL.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindLibVNCServer.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindDCMTK.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindFFmpeg.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindGStreamer.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindGLIB.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindDirectShow.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindSDL2.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindThreads.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckIncludeFiles.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckLibraryExists.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckSymbolExists.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindSDL.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindThreads.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckIncludeFiles.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckLibraryExists.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckSymbolExists.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindPoppler-glib.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPkgConfig.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindRSVG.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPkgConfig.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindGtkGl.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPkgConfig.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindDirectInput.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindNVTT.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindZeroConf.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindLIBLAS.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindBoost.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindLua52.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindLua51.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/OsgMacroUtils.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindFLTK.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindFLTK.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindOpenGL.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindFOX.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindwxWidgets.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindGIFLIB.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindJPEG.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CMakeParseArguments.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindPNG.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindZLIB.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindTIFF.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/FindQuickTime.cmake
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/Documentation.cmake
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osg.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgDB.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgFX.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgGA.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgParticle.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgSim.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgText.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgUtil.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgTerrain.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgManipulator.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgViewer.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgWidget.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgShadow.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgAnimation.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/packaging/pkgconfig/openscenegraph-osgVolume.pc.in
+D:/Development/op3d_active/OpenSceneGraph-OpenSceneGraph-3.6.3/CMakeModules/cmake_uninstall.cmake.in
