@@ -1584,8 +1584,7 @@ void Image::swap(osg::Image& rhs)
 
 void Image::scaleImage(int s,int t,int r, GLenum newDataType)
 {
-    if (_s==s && _t==t && _r==r && newDataType== _pixelFormat)
-		return;
+    if (_s==s && _t==t && _r==r && _dataType==newDataType) return;
 
     if (_data==NULL)
     {

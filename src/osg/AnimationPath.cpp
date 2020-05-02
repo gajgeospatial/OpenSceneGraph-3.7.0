@@ -92,10 +92,9 @@ void AnimationPath::read(std::istream& in)
         double time;
         osg::Vec3d position;
         osg::Quat rotation;
-		if (in >> time >> position.x() >> position.y() >> position.z() >> rotation.x() >> rotation.y() >> rotation.z() >> rotation.w())
-			insert(time, osg::AnimationPath::ControlPoint(position, rotation));
-		else
-			break;
+        in >> time >> position.x() >> position.y() >> position.z() >> rotation.x() >> rotation.y() >> rotation.z() >> rotation.w();
+        if(!in.eof())
+            insert(time,osg::AnimationPath::ControlPoint(position,rotation));
     }
 }
 
