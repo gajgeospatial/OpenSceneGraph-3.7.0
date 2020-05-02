@@ -11,6 +11,11 @@
 * OpenSceneGraph Public License for more details.
 */
 
+/**
+* This is a modified version of the ZipArchive class in the OpenSceneGraph repository that uses libzip
+* instead of unzip.cpp to support zip files that are greater than 2GB in size.
+*/
+
 #include "ZipArchive.h"
 
 #include <osgDB/FileUtils>
@@ -23,7 +28,6 @@
 
 #include <sstream>
 #include <cstdio>
-#include "unzip.h"
 
 #if !defined(S_ISDIR)
 #  if defined( _S_IFDIR) && !defined( __S_IFDIR)
@@ -60,7 +64,7 @@ void ZipArchive::close(bool forceall)
 				{
 					if (i->second._zipHandle != NULL)
 					{
-						CloseZip(i->second._zipHandle);
+                        zip_close(i->second._zipHandle);
 					}
 				}
 				// clear out the file handles
@@ -74,7 +78,7 @@ void ZipArchive::close(bool forceall)
 			{
 				// close the file (on one thread since it's a shared file)
 				const PerThreadData& data = getDataNoLock();
-				CloseZip(data._zipHandle);
+                zip_close(data._zipHandle);
 
 				// clear out the file handles
 				_perThreadData.clear();
@@ -90,7 +94,8 @@ void ZipArchive::close(bool forceall)
 /** return true if file exists in archive.*/
 bool ZipArchive::fileExists(const std::string& filename) const
 {
-    return GetZipEntry(filename) != NULL;
+    zip_uint64_t idx;
+    return GetZipIndex(filename, idx);
 }
 
 /** Get the file name which represents the master file recorded in the Archive.*/
@@ -207,29 +212,24 @@ osgDB::ReaderWriter::ReadResult ZipArchive::readObject(const std::string& file, 
     if (!_zipLoaded || !acceptsExtension(ext)) 
 		return osgDB::ReaderWriter::ReadResult::FILE_NOT_HANDLED;
 
-    const ZIPENTRY* ze = GetZipEntry(file);
-    if(ze != NULL)
-    {
-        std::stringstream buffer;
+    std::stringstream buffer;
 
-        osgDB::ReaderWriter* rw = ReadFromZipEntry(ze, options, buffer);
-        if (rw != NULL)
-        {
-            // Setup appropriate options
-            osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
+    osgDB::ReaderWriter* rw = ReadFromZipIndex(file, options, buffer);
+    if (rw != NULL)
+    {
+        // Setup appropriate options
+        osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
             static_cast<osgDB::ReaderWriter::Options*>(options->clone(osg::CopyOp::SHALLOW_COPY)) :
             new osgDB::ReaderWriter::Options;
 
-            local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(ze->name));
+        local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(file));
 
-            osgDB::ReaderWriter::ReadResult readResult = rw->readObject(buffer,local_opt.get());
-            if (readResult.success())
-            {
-                return readResult;
-            }
+        osgDB::ReaderWriter::ReadResult readResult = rw->readObject(buffer, local_opt.get());
+        if (readResult.success())
+        {
+            return readResult;
         }
     }
-
     return rresult;
 }
 
@@ -241,29 +241,23 @@ osgDB::ReaderWriter::ReadResult ZipArchive::readImage(const std::string& file,co
     if (!_zipLoaded || !acceptsExtension(ext)) 
 		return osgDB::ReaderWriter::ReadResult::FILE_NOT_HANDLED;
 
-    const ZIPENTRY* ze = GetZipEntry(file);
-    if(ze != NULL)
+    std::stringstream buffer;
+    osgDB::ReaderWriter* rw = ReadFromZipIndex(file, options, buffer);
+    if (rw != NULL)
     {
-        std::stringstream buffer;
-
-        osgDB::ReaderWriter* rw = ReadFromZipEntry(ze, options, buffer);
-        if (rw != NULL)
-        {
-            // Setup appropriate options
-            osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
+        // Setup appropriate options
+        osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
             static_cast<osgDB::ReaderWriter::Options*>(options->clone(osg::CopyOp::SHALLOW_COPY)) :
             new osgDB::ReaderWriter::Options;
 
-            local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(ze->name));
+        local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(file));
 
-            osgDB::ReaderWriter::ReadResult readResult = rw->readImage(buffer,local_opt.get());
-            if (readResult.success())
-            {
-                return readResult;
-            }
+        osgDB::ReaderWriter::ReadResult readResult = rw->readImage(buffer, local_opt.get());
+        if (readResult.success())
+        {
+            return readResult;
         }
     }
-
    return rresult;
 }
 
@@ -275,26 +269,22 @@ osgDB::ReaderWriter::ReadResult ZipArchive::readHeightField(const std::string& f
     if (!_zipLoaded || !acceptsExtension(ext)) 
 		return osgDB::ReaderWriter::ReadResult::FILE_NOT_HANDLED;
 
-    const ZIPENTRY* ze = GetZipEntry(file);
-    if(ze != NULL)
-    {
-        std::stringstream buffer;
+    std::stringstream buffer;
 
-        osgDB::ReaderWriter* rw = ReadFromZipEntry(ze, options, buffer);
-        if (rw != NULL)
-        {
-            // Setup appropriate options
-            osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
-            options->cloneOptions() :
+    osgDB::ReaderWriter* rw = ReadFromZipIndex(file, options, buffer);
+    if (rw != NULL)
+    {
+        // Setup appropriate options
+        osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
+            static_cast<osgDB::ReaderWriter::Options*>(options->clone(osg::CopyOp::SHALLOW_COPY)) :
             new osgDB::ReaderWriter::Options;
 
-            local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(ze->name));
+        local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(file));
 
-            osgDB::ReaderWriter::ReadResult readResult = rw->readObject(buffer,local_opt.get());
-            if (readResult.success())
-            {
-                return readResult;
-            }
+        osgDB::ReaderWriter::ReadResult readResult = rw->readHeightField(buffer, local_opt.get());
+        if (readResult.success())
+        {
+            return readResult;
         }
     }
 
@@ -309,26 +299,22 @@ osgDB::ReaderWriter::ReadResult ZipArchive::readNode(const std::string& file,con
     if (!_zipLoaded || !acceptsExtension(ext)) 
 		return osgDB::ReaderWriter::ReadResult::FILE_NOT_HANDLED;
 
-    const ZIPENTRY* ze = GetZipEntry(file);
-    if(ze != NULL)
+    std::stringstream buffer;
+
+    osgDB::ReaderWriter* rw = ReadFromZipIndex(file, options, buffer);
+    if (rw != NULL)
     {
-        std::stringstream buffer;
+        // Setup appropriate options
+        osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
+            static_cast<osgDB::ReaderWriter::Options*>(options->clone(osg::CopyOp::SHALLOW_COPY)) :
+            new osgDB::ReaderWriter::Options;
 
-        osgDB::ReaderWriter* rw = ReadFromZipEntry(ze, options, buffer);
-        if (rw != NULL)
+        local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(file));
+
+        osgDB::ReaderWriter::ReadResult readResult = rw->readNode(buffer, local_opt.get());
+        if (readResult.success())
         {
-            // Setup appropriate options
-            osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
-                options->cloneOptions() :
-                new osgDB::ReaderWriter::Options;
-
-            local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(ze->name));
-
-            osgDB::ReaderWriter::ReadResult readResult = rw->readNode(buffer,local_opt.get());
-            if (readResult.success())
-            {
-                return readResult;
-            }
+            return readResult;
         }
     }
 
@@ -342,26 +328,22 @@ osgDB::ReaderWriter::ReadResult ZipArchive::readScript(const std::string& file,c
     std::string ext = osgDB::getLowerCaseFileExtension(file);
     if (!_zipLoaded || !acceptsExtension(ext)) return osgDB::ReaderWriter::ReadResult::FILE_NOT_HANDLED;
 
-    const ZIPENTRY* ze = GetZipEntry(file);
-    if (ze != NULL)
+    std::stringstream buffer;
+
+    osgDB::ReaderWriter* rw = ReadFromZipIndex(file, options, buffer);
+    if (rw != NULL)
     {
-        std::stringstream buffer;
+        // Setup appropriate options
+        osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
+            static_cast<osgDB::ReaderWriter::Options*>(options->clone(osg::CopyOp::SHALLOW_COPY)) :
+            new osgDB::ReaderWriter::Options;
 
-        osgDB::ReaderWriter* rw = ReadFromZipEntry(ze, options, buffer);
-        if (rw != NULL)
+        local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(file));
+
+        osgDB::ReaderWriter::ReadResult readResult = rw->readScript(buffer, local_opt.get());
+        if (readResult.success())
         {
-            // Setup appropriate options
-            osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
-                options->cloneOptions() :
-                new osgDB::ReaderWriter::Options;
-
-            local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(ze->name));
-
-            osgDB::ReaderWriter::ReadResult readResult = rw->readScript(buffer,local_opt.get());
-            if (readResult.success())
-            {
-                return readResult;
-            }
+            return readResult;
         }
     }
 
@@ -376,26 +358,22 @@ osgDB::ReaderWriter::ReadResult ZipArchive::readShader(const std::string& file,c
     if (!_zipLoaded || !acceptsExtension(ext)) 
 		return osgDB::ReaderWriter::ReadResult::FILE_NOT_HANDLED;
 
-    const ZIPENTRY* ze = GetZipEntry(file);
-    if(ze != NULL)
+    std::stringstream buffer;
+
+    osgDB::ReaderWriter* rw = ReadFromZipIndex(file, options, buffer);
+    if (rw != NULL)
     {
-        std::stringstream buffer;
+        // Setup appropriate options
+        osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
+            static_cast<osgDB::ReaderWriter::Options*>(options->clone(osg::CopyOp::SHALLOW_COPY)) :
+            new osgDB::ReaderWriter::Options;
 
-        osgDB::ReaderWriter* rw = ReadFromZipEntry(ze, options, buffer);
-        if (rw != NULL)
+        local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(file));
+
+        osgDB::ReaderWriter::ReadResult readResult = rw->readShader(buffer, local_opt.get());
+        if (readResult.success())
         {
-            // Setup appropriate options
-            osg::ref_ptr<osgDB::ReaderWriter::Options> local_opt = options ?
-                options->cloneOptions() :
-                new osgDB::ReaderWriter::Options;
-
-            local_opt->setPluginStringData("STREAM_FILENAME", osgDB::getSimpleFileName(ze->name));
-
-            osgDB::ReaderWriter::ReadResult readResult = rw->readShader(buffer,local_opt.get());
-            if (readResult.success())
-            {
-                return readResult;
-            }
+            return readResult;
         }
     }
 
@@ -432,48 +410,39 @@ osgDB::ReaderWriter::WriteResult ZipArchive::writeShader(const osg::Shader& /*sh
     return osgDB::ReaderWriter::WriteResult(osgDB::ReaderWriter::WriteResult::FILE_NOT_HANDLED);
 }
 
-
-osgDB::ReaderWriter* ZipArchive::ReadFromZipEntry(const ZIPENTRY* ze, const osgDB::ReaderWriter::Options* options, std::stringstream& buffer) const
+osgDB::ReaderWriter* ZipArchive::ReadFromZipIndex(const std::string& filename, const osgDB::ReaderWriter::Options* options, std::stringstream& streamIn) const
 {
-    if (ze != 0)
+    zip_uint64_t idx;
+    if (GetZipIndex(filename, idx))
     {
-        char* ibuf = new (std::nothrow) char[ze->unc_size];
-        if (ibuf)
+        // fetch the handle for the current thread:
+        const PerThreadData& data = getData();
+        if (data._zipHandle != NULL)
         {
-            // fetch the handle for the current thread:
-            const PerThreadData& data = getData();
-            if ( data._zipHandle != NULL )
-            {
-                ZRESULT result = UnzipItem(data._zipHandle, ze->index, ibuf, ze->unc_size);
-                bool unzipSuccesful = CheckZipErrorCode(result);
-                if(unzipSuccesful)
-                {
-                    buffer.write(ibuf,ze->unc_size);
+            zip_file_t* zf;
+            if ((zf = zip_fopen_index(data._zipHandle, idx, 0)) != NULL)
+            {             
+                char buf[8192];
+                zip_int64_t n;
+                while ((n = zip_fread(zf, buf, sizeof(buf))) > 0) {
+                    streamIn.write(buf, (size_t)n);
                 }
-
-                delete[] ibuf;
-
-                std::string file_ext = osgDB::getFileExtension(ze->name);
-
+                zip_fclose(zf);
+                
+                std::string file_ext = osgDB::getFileExtension(filename);
                 osgDB::ReaderWriter* rw = osgDB::Registry::instance()->getReaderWriterForExtension(file_ext);
                 if (rw != NULL)
                 {
                     return rw;
                 }
-            }
-            else
-            {
-                delete[] ibuf;
-            }
-        }
-        else
-        {
-            //std::cout << "Error- failed to allocate enough memory to unzip file '" << ze->name << ", with size '" << ze->unc_size << std::endl;
-        }
+
+            }            
+        }        
     }
 
     return NULL;
 }
+
 
 void CleanupFileString(std::string& strFileOrDir)
 {
@@ -496,93 +465,42 @@ void CleanupFileString(std::string& strFileOrDir)
     {
         strFileOrDir = strFileOrDir.substr(0, strFileOrDir.length()-1);
     }
-
-    //add a beginning separator
-    if(strFileOrDir[0] != '/')
-    {
-        strFileOrDir.insert(0, "/");
-    }
 }
 
-void ZipArchive::IndexZipFiles(HZIP hz)
+void ZipArchive::IndexZipFiles(zip_t* zip)
 {
-    if(hz != NULL && !_zipLoaded)
+    if (zip != NULL && !_zipLoaded)
     {
-        //mZipRecord = hz;
-
-        GetZipItem(hz, -1, &_mainRecord);
-        int numitems = _mainRecord.index;
-
-        // Now loop through each file in zip
-        for (int i = 0; i < numitems; i++)
+        zip_uint64_t  count = zip_get_num_entries(zip, 0);
+        for (zip_uint64_t i = 0; i < count; i++)
         {
-            ZIPENTRY* ze = new ZIPENTRY();
-
-            GetZipItem(hz, i, ze);
-            std::string name = ze->name;
-
+            std::string name(zip_get_name(zip, i, 0));
             CleanupFileString(name);
-
-            if(!name.empty())
+            if (!name.empty())
             {
-                _zipIndex.insert(ZipEntryMapping(name, ze));
+                _zipIndex.insert(ZipEntryMapping(name, i));
             }
-            else
-            {
-                // ze isn't being used to delete it
-                delete ze;
-            }
-        }
+        }        
     }
 }
 
-ZIPENTRY* ZipArchive::GetZipEntry(const std::string& filename)
+bool ZipArchive::GetZipIndex(const std::string& filename, zip_uint64_t& idx) const
 {
-    ZIPENTRY* ze = NULL;
-    std::string fileToLoad = filename;
-    CleanupFileString(fileToLoad);
-
-    ZipEntryMap::iterator iter = _zipIndex.find(fileToLoad);
-    if(iter != _zipIndex.end())
+    const ZipEntryMap::iterator iter = const_cast<ZipEntryMap*>(&_zipIndex)->find(filename);
+    if (iter != _zipIndex.end())
     {
-        ze = (*iter).second;
+        idx = (*iter).second;
+        return true;
     }
-
-    return ze;
-}
-
-const ZIPENTRY* ZipArchive::GetZipEntry(const std::string& filename) const
-{
-    ZIPENTRY* ze = NULL;
-    std::string fileToLoad = filename;
-    CleanupFileString(fileToLoad);
-
-    ZipEntryMap::const_iterator iter = _zipIndex.find(fileToLoad);
-    if(iter != _zipIndex.end())
-    {
-        ze = (*iter).second;
-    }
-
-    return ze;
+    return false;
 }
 
 osgDB::FileType ZipArchive::getFileType(const std::string& filename) const
 {
-    const ZIPENTRY* ze = GetZipEntry(filename);
-    if(ze != NULL)
+    zip_uint64_t idx;
+    if (GetZipIndex(filename, idx))
     {
-    #ifdef ZIP_STD
-        if (ze->attr & S_IFDIR)
-    #else
-        if (ze->attr & FILE_ATTRIBUTE_DIRECTORY)
-    #endif
-        {
-            return osgDB::DIRECTORY;
-        }
-        else
-        {
-            return osgDB::REGULAR_FILE;
-        }
+        return osgDB::REGULAR_FILE;
     }
 
     return osgDB::FILE_NOT_FOUND;
@@ -659,32 +577,6 @@ std::string ZipArchive::ReadPassword(const osgDB::ReaderWriter::Options* options
     return password;
 }
 
-bool ZipArchive::CheckZipErrorCode(ZRESULT result) const
-{
-    if(result == ZR_OK)
-    {
-        return true;
-    }
-    else
-    {
-        unsigned buf_size  = 1025;
-        char* buf = new (std::nothrow) char[buf_size];
-        if (buf)
-        {
-            buf[buf_size - 1] = 0;
-
-            FormatZipMessage(result, buf, buf_size - 1);
-
-            //print error message
-            //sprintf(buf, "%s");
-            OSG_WARN << "Error loading zip file: " << getArchiveFileName() << ", Zip loader returned error: " << buf << "\n";
-            delete [] buf;
-        }
-
-        return false;
-    }
-}
-
 const ZipArchive::PerThreadData&
 ZipArchive::getData() const
 {
@@ -710,11 +602,15 @@ ZipArchive::getDataNoLock() const
         PerThreadData& data = ncThis->_perThreadData[current];
         if ( !_filename.empty() )
         {
-            data._zipHandle = OpenZip( _filename.c_str(), _password.c_str() );
-        }
-        else if ( !_membuffer.empty() )
-        {
-            data._zipHandle = OpenZip( (void*)_membuffer.c_str(), _membuffer.length(), _password.c_str() );
+            int errorCode;
+            data._zipHandle = zip_open(_filename.c_str(), ZIP_RDONLY, &errorCode);
+            if (!data._zipHandle)
+            {
+                zip_error_t error;
+                zip_error_init_with_code(&error, errorCode);
+                OSG_WARN << "Failed to open zip " << _filename << ": " << zip_error_strerror(&error) << std::endl;
+                zip_error_fini(&error);                
+            }
         }
         else
         {
