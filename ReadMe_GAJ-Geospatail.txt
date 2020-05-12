@@ -1,0 +1,1 @@
+This project should be installed as OSG_DIR with ProjectTool.

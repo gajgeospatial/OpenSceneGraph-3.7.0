@@ -1,1 +1,0 @@
-The envionment varable for this project is OSG_DIR
