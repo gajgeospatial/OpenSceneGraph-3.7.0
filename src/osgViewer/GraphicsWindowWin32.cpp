@@ -1065,20 +1065,18 @@ void GraphicsWindowWin32::init()
     _initialized = _ownsWindow ? createWindow() : setWindow(windowHandle);
     _valid       = _initialized;
 
-    int windowX = 0, windowY = 0, windowWidth = 0, windowHeight = 0;
-    if (_traits.valid())
-    {
-        windowX = _traits->x;
-        windowY = _traits->y;
-        windowWidth = _traits->width;
-        windowHeight = _traits->height;
-    }
+	if (_ownsWindow)
+	{
+		int windowX = _traits->x;
+		int windowY = _traits->y;
+		int windowWidth = _traits->width;
+		int windowHeight = _traits->height;
 
-    if (areWindowDimensionsChanged(_hwnd, _screenOriginX, _screenOriginY, windowX, windowY, windowWidth, windowHeight))
-    {
-        resized(windowX, windowY, windowWidth, windowHeight);
-    }
-
+		if (areWindowDimensionsChanged(_hwnd, _screenOriginX, _screenOriginY, windowX, windowY, windowWidth, windowHeight))
+		{
+			resized(windowX, windowY, windowWidth, windowHeight);
+		}
+	}
     // make sure the event queue has the correct window rectangle size and input range
     getEventQueue()->syncWindowRectangleWithGraphicsContext();
 
