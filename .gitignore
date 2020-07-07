@@ -12,8 +12,6 @@ vc142
 **/*.sdf
 **/*.VC.db
 **/ipch*
-CDB_Builder.VC.VC.opendb
-*.suo
 *.suo
 msvc/src/osgPlugins/txp/osgdb_txp.vcxproj.user
 msvc/src/osgPlugins/cfg/osgdb_cfg.vcxproj.user
