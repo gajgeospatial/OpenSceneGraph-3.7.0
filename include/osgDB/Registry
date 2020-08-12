@@ -213,7 +213,7 @@ class OSGDB_EXPORT Registry : public osg::Referenced
 
         ReaderWriter::ReadResult openArchiveImplementation(const std::string& fileName, ReaderWriter::ArchiveStatus status, unsigned int indexBlockSizeHint, const Options* options);
 
-		bool Registry::closeArchiveImplementation(const std::string& fileName);
+		bool closeArchiveImplementation(const std::string& fileName);
 	
 		ReaderWriter::ReadResult readObject(const std::string& fileName,const Options* options, bool buildKdTreeIfRequired=true)
         {
