@@ -600,9 +600,9 @@ ZipArchive::getDataNoLock() const
 
         // data does not already exist, so open the ZIP with a handle exclusively for this thread:
         PerThreadData& data = ncThis->_perThreadData[current];
+        int errorCode;
         if ( !_filename.empty() )
         {
-            int errorCode;
             data._zipHandle = zip_open(_filename.c_str(), ZIP_RDONLY, &errorCode);
             if (!data._zipHandle)
             {
@@ -610,6 +610,25 @@ ZipArchive::getDataNoLock() const
                 zip_error_init_with_code(&error, errorCode);
                 OSG_WARN << "Failed to open zip " << _filename << ": " << zip_error_strerror(&error) << std::endl;
                 zip_error_fini(&error);                
+            }
+        }
+        else if (!_membuffer.empty())
+        {
+            zip_error_t error;
+            zip_source_t * ZipSource = zip_source_buffer_create((void *)_membuffer.c_str(),_membuffer.length(), 1, &error);
+            if (!ZipSource)
+            {
+                OSG_WARN << "Failed to Create zipsource from buffer " << ": " << zip_error_strerror(&error) << std::endl;
+                zip_error_fini(&error);
+            }
+            else
+            {
+                data._zipHandle = zip_open_from_source(ZipSource, 0, &error);
+                if (!data._zipHandle)
+                {
+                    OSG_WARN << "Failed to open zip " << _filename << ": " << zip_error_strerror(&error) << std::endl;
+                    zip_error_fini(&error);
+                }
             }
         }
         else
