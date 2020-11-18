@@ -298,7 +298,7 @@ bool Document::MapTextureName2Archive(std::string &textureName)
 		size_t pos0 = textureName.find("501_GTModelTexture");
 		if (pos0 != std::string::npos)
 		{
-			textureName = textureName.substr(pos0 + 18);
+			textureName = textureName.substr(pos0 + 19);
 		}
 		else
 		{
