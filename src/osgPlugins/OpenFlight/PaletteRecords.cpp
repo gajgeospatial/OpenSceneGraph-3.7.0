@@ -332,8 +332,14 @@ protected:
     osg::StateSet* readTexture(const std::string& filename, Document& document) const
     {
 		osg::ref_ptr<osg::Image> image;
-		if (document.getTextureInArchive())
-			image = document.readArchiveImage(filename);
+        if (document.getTextureInArchive())
+        {
+            image = document.readArchiveImage(filename);
+            if (image == NULL)
+            {
+                image = osgDB::readRefImageFile(filename, document.getOptions());
+            }
+        }
 		else
 			image = osgDB::readRefImageFile(filename, document.getOptions());
         if (!image) return NULL;
