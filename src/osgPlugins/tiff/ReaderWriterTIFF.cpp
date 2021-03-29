@@ -683,7 +683,11 @@ simage_tiff_load(std::istream& fin,
         case pack(PHOTOMETRIC_PALETTE, PLANARCONFIG_CONTIG):
         case pack(PHOTOMETRIC_PALETTE, PLANARCONFIG_SEPARATE):
             if (TIFFGetField(in, TIFFTAG_COLORMAP, &red, &green, &blue) != 1)
+            {
                 tifferror = ERR_READ;
+                break;
+            }
+
             /* */
             /* Convert 16-bit colormap to 8-bit (unless it looks */
             /* like an old-style 8-bit colormap). */

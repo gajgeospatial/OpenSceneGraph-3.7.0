@@ -194,7 +194,7 @@ void Texture1D::apply(State& state) const
 
         textureObject->setAllocated(_numMipmapLevels,_internalFormat,_textureWidth,1,1,0);
 
-        // in theory the following line is redundent, but in practice
+        // in theory the following line is redundant, but in practice
         // have found that the first frame drawn doesn't apply the textures
         // unless a second bind is called?!!
         // perhaps it is the first glBind which is not required...
@@ -238,13 +238,15 @@ void Texture1D::apply(State& state) const
             textureObject = generateAndAssignTextureObject(contextID, GL_TEXTURE_1D, _numMipmapLevels, texStorageSizedInternalFormat, _textureWidth, 1, 1, 0);
             textureObject->bind(state);
             applyTexParameters(GL_TEXTURE_1D, state);
-
-            extensions->glTexStorage1D( GL_TEXTURE_1D, osg::maximum(_numMipmapLevels,1), texStorageSizedInternalFormat, _textureWidth);
+            if(!textureObject->_allocated)
+            {
+                extensions->glTexStorage1D( GL_TEXTURE_1D, osg::maximum(_numMipmapLevels,1), texStorageSizedInternalFormat, _textureWidth);
+            }
         }
         else
         {
             GLenum internalFormat = _sourceFormat ? _sourceFormat : _internalFormat;
-            textureObject = generateAndAssignTextureObject(contextID, GL_TEXTURE_1D, _numMipmapLevels, internalFormat, _textureWidth, 1, 1, 0);
+            textureObject = generateAndAssignTextureObject(contextID, GL_TEXTURE_1D, _numMipmapLevels, internalFormat, _textureWidth, 1, 1, _borderWidth);
             textureObject->bind(state);
             applyTexParameters(GL_TEXTURE_1D, state);
 
@@ -259,6 +261,8 @@ void Texture1D::apply(State& state) const
         {
             _readPBuffer->bindPBufferToTexture(GL_FRONT);
         }
+
+        textureObject->setAllocated(_numMipmapLevels, texStorageSizedInternalFormat!=0? texStorageSizedInternalFormat: _internalFormat, _textureWidth, 1, 1, _borderWidth);
 
     }
     else

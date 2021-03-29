@@ -317,7 +317,14 @@ bool WindowManager::pickAtXY(float x, float y, WidgetList& wl)
         // Iterate over every picked result and create a list of Widgets that belong
         // to that Window.
         for(Intersections::iterator i = intr.begin(); i != intr.end(); i++) {
-            Window* win = dynamic_cast<Window*>(i->nodePath.back()->getParent(0));
+
+            Window* win = 0;
+            const osg::NodePath& nodePath = i->nodePath;
+            for(osg::NodePath::const_reverse_iterator np_itr = nodePath.rbegin(); np_itr != nodePath.rend(); ++np_itr)
+            {
+                win = dynamic_cast<Window*>(*np_itr);
+                if (win) break;
+            }
 
             // Make sure that our window is valid, and that our pick is within the
             // "visible area" of the Window.

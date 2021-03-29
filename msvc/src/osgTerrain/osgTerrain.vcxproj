@@ -290,11 +290,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -335,11 +335,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -380,11 +380,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -425,11 +425,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -470,11 +470,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -515,11 +515,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -560,11 +560,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -605,11 +605,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Debug";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Debug\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -650,11 +650,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -695,11 +695,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -740,11 +740,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -785,11 +785,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -830,11 +830,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -875,11 +875,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -920,11 +920,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -965,11 +965,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR="Release";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;OSGTERRAIN_LIBRARY;CMAKE_INTDIR=\"Release\";osgTerrain_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>

@@ -291,11 +291,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -336,11 +336,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -381,11 +381,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -426,11 +426,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -471,11 +471,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -516,11 +516,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -561,11 +561,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -579,7 +579,7 @@
     <Link>
       <AdditionalOptions> /debug %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;OpenThreadsd.lib;osgd.lib;osgDBd.lib;osgUtild.lib;osgAnimationd.lib;wininet.lib;libfbxsdk-md.lib;opengl32.lib;osgViewerd.lib;osgTextd.lib;osgGAd.lib;osgDBd.lib;zlib.lib;osgUtild.lib;osgd.lib;OpenThreadsd.lib;opengl32.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);$(FBX_DIR)\lib\vs2015\x64\debug;..\..\..\..\..\$(ZLIB_DIR)\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);$(FBX_DIR)\lib\vs2017\x64\debug;..\..\..\..\..\$(ZLIB_DIR)\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(OutDir)osgdb_fbxd.lib</ImportLibrary>
       <ProgramDataBaseFile>$(OutDir)$(TargetName).pdb</ProgramDataBaseFile>
@@ -606,11 +606,11 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -624,7 +624,7 @@
     <Link>
       <AdditionalOptions> /debug %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;OpenThreadsd.lib;osgd.lib;osgDBd.lib;osgUtild.lib;osgAnimationd.lib;wininet.lib;libfbxsdk-md.lib;libxml2-md.lib;opengl32.lib;osgViewerd.lib;osgTextd.lib;osgGAd.lib;zlib.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);$(FBX_DIR)\lib\vs2017\x64\debug;..\..\..\..\..\$(ZLIB_DIR)\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);$(FBX_DIR)\lib\vs2019\x64\debug;..\..\..\..\..\$(ZLIB_DIR)\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(OutDir)osgdb_fbxd.lib</ImportLibrary>
       <ProgramDataBaseFile>$(OutDir)$(TargetName).pdb</ProgramDataBaseFile>
@@ -651,11 +651,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -696,11 +696,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -741,11 +741,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -786,11 +786,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -831,11 +831,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -876,11 +876,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -921,11 +921,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -939,7 +939,7 @@
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;OpenThreads.lib;osg.lib;osgDB.lib;osgUtil.lib;osgAnimation.lib;wininet.lib;libfbxsdk-md.lib;opengl32.lib;osgViewer.lib;osgText.lib;osgGA.lib;osgDB.lib;zlib.lib;osgUtil.lib;osg.lib;OpenThreads.lib;opengl32.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);$(FBX_DIR)\lib\vs2015\x64\release;..\..\..\..\..\$(ZLIB_DIR)\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\lib\vs2013\x86\release;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);$(FBX_DIR)\lib\vs2017\x64\release;..\..\..\..\..\$(ZLIB_DIR)\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\lib\vs2013\x86\release;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ImportLibrary>$(OutDir)osgdb_fbx.lib</ImportLibrary>
       <ProgramDataBaseFile>$(OutDir)$(TargetName).pdb</ProgramDataBaseFile>
@@ -966,11 +966,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_fbx_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\include;C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -984,7 +984,7 @@
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;OpenThreads.lib;osg.lib;osgDB.lib;osgUtil.lib;osgAnimation.lib;wininet.lib;libfbxsdk-md.lib;libxml2-md.lib;opengl32.lib;osgViewer.lib;osgText.lib;osgGA.lib;zlib.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);$(FBX_DIR)\lib\vs2017\x64\release;..\..\..\..\..\$(ZLIB_DIR)\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\lib\vs2013\x86\release;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);$(FBX_DIR)\lib\vs2019\x64\release;..\..\..\..\..\$(ZLIB_DIR)\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration);C:\Program Files\Autodesk\FBX\FBX SDK\2017.0.1\lib\vs2013\x86\release;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ImportLibrary>$(OutDir)osgdb_fbx.lib</ImportLibrary>
       <ProgramDataBaseFile>$(OutDir)$(TargetName).pdb</ProgramDataBaseFile>

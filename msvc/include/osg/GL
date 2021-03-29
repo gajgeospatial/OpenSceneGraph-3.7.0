@@ -42,7 +42,7 @@
 #define OSG_GL_CONTEXT_VERSION "1.0"
 
 
-#ifndef WIN32
+#ifndef _WIN32
 
     // Required for compatibility with glext.h style function definitions of
     // OpenGL extensions, such as in src/osg/Point.cpp.

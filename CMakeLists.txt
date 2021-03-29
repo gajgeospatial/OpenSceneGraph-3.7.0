@@ -4,7 +4,7 @@
 SET(OPENSCENEGRAPH_MAJOR_VERSION 3)
 SET(OPENSCENEGRAPH_MINOR_VERSION 7)
 SET(OPENSCENEGRAPH_PATCH_VERSION 0)
-SET(OPENSCENEGRAPH_SOVERSION 201)
+SET(OPENSCENEGRAPH_SOVERSION 202)
 
 
 # set to 0 when not a release candidate, non zero means that any generated
@@ -30,6 +30,9 @@ if(COMMAND cmake_policy)
         cmake_policy(SET CMP0017 NEW)
     endif()
 
+    # INTERPROCEDURAL_OPTIMIZATION is enforced when enabled.
+    # Allows passing -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON
+    cmake_policy(SET CMP0069 NEW)
 endif()
 
 IF(APPLE)
@@ -123,6 +126,9 @@ ELSE()
     SET(OSG_WINDOWING_SYSTEM "X11" CACHE STRING "Windowing system type for graphics window creation; options: X11 or None.")
 ENDIF()
 
+IF(OSG_WINDOWING_SYSTEM STREQUAL "None")
+    SET(OSG_WINDOWING_SYSTEM_NONE ON INTERNAL "No windowing system")
+ENDIF()
 
 SET(OPENSCENEGRAPH_VERSION ${OPENSCENEGRAPH_MAJOR_VERSION}.${OPENSCENEGRAPH_MINOR_VERSION}.${OPENSCENEGRAPH_PATCH_VERSION})
 
@@ -375,7 +381,9 @@ IF(WIN32 AND NOT ANDROID)
         OPTION(MSVC_DISABLE_CHECKED_ITERATORS "Set to ON to disable Visual C++ checked iterators. If you do this you must ensure that every other project in your solution and all dependencies are compiled with _SECURE_SCL=0." OFF)
         MARK_AS_ADVANCED(MSVC_DISABLE_CHECKED_ITERATORS)
         IF(MSVC_DISABLE_CHECKED_ITERATORS)
+            ADD_DEFINITIONS(-D_ITERATOR_DEBUG_LEVEL=0) # this supercedes _SECURE_SCL and _HAS_ITERATOR_DEBUGGING in VS2010 and forward
             ADD_DEFINITIONS(-D_SECURE_SCL=0)
+            ADD_DEFINITIONS(-D_HAS_ITERATOR_DEBUGGING=0)
         ENDIF(MSVC_DISABLE_CHECKED_ITERATORS)
 
         OPTION(MSVC_USE_DEFAULT_STACK_SIZE "Set to ON to use the default Visual C++ stack size. CMake forces a high stack size by default, which can cause problems for applications with large number of threads." OFF)
@@ -745,7 +753,9 @@ OPTION(BUILD_OSG_PLUGINS "Build OSG Plugins - Disable for compile testing exampl
 mark_as_advanced(BUILD_OSG_PLUGINS)
 ################################################################################
 # 3rd Party Dependency Stuff
-IF(WIN32 AND NOT ANDROID)
+OPTION(OSG_FIND_3RD_PARTY_DEPS "Enable to search for Android or Windows dependencies in ./3rdparty" ON)
+
+IF(WIN32 AND NOT ANDROID AND OSG_FIND_3RD_PARTY_DEPS)
     INCLUDE(Find3rdPartyDependencies)
 ENDIF()
 
@@ -756,7 +766,7 @@ OPTION(OSG_USE_LOCAL_LUA_SOURCE "Enable to use local Lua source when building th
 # you can use the following style of command line option when invoking Cmake (here illustrating ignoring PythonLibs) :
 # cmake -DCMAKE_DISABLE_FIND_PACKAGE_PythonLibs=1 .
 #
-IF(ANDROID)
+IF(ANDROID AND OSG_FIND_3RD_PARTY_DEPS)
     ANDROID_3RD_PARTY()
 ELSE()
 # Common to all platforms except android:
@@ -832,7 +842,7 @@ ENDIF()
 
 # Image readers/writers depend on 3rd party libraries except for OS X which
 # can use Quicktime.
-IF(NOT ANDROID)
+IF(NOT (ANDROID AND OSG_FIND_3RD_PARTY_DEPS))
     IF(NOT APPLE)
         FIND_PACKAGE(GIFLIB)
         FIND_PACKAGE(JPEG)

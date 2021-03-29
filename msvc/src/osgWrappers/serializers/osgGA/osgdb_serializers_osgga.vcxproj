@@ -292,11 +292,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <StructMemberAlignment>16Bytes</StructMemberAlignment>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -338,11 +338,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <StructMemberAlignment>16Bytes</StructMemberAlignment>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -384,11 +384,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <StructMemberAlignment>16Bytes</StructMemberAlignment>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -430,11 +430,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <StructMemberAlignment>16Bytes</StructMemberAlignment>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -476,11 +476,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <StructMemberAlignment>16Bytes</StructMemberAlignment>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -522,11 +522,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <StructMemberAlignment>16Bytes</StructMemberAlignment>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -568,11 +568,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <StructMemberAlignment>16Bytes</StructMemberAlignment>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -614,11 +614,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <StructMemberAlignment>16Bytes</StructMemberAlignment>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Debug";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;_DEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -660,11 +660,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -706,11 +706,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -752,11 +752,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -798,11 +798,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -844,11 +844,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -890,11 +890,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -936,11 +936,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -982,11 +982,11 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR="Release";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0602;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";osgdb_serializers_osgga_EXPORTS;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\..\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
