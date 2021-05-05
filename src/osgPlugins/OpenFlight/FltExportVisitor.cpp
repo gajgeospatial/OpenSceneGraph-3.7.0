@@ -353,7 +353,8 @@ FltExportVisitor::apply( osg::Geode& node )
     ScopedStatePushPop guard( this, node.getStateSet() );
 
     unsigned int idx;
-    for (idx=0; idx<node.getNumDrawables(); idx++)
+    unsigned int numdrawables = node.getNumDrawables();
+    for (idx=0; idx<numdrawables; idx++)
     {
         osg::Geometry* geom = node.getDrawable( idx )->asGeometry();
         if (!geom)
