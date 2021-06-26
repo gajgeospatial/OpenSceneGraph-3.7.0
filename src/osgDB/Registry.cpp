@@ -280,6 +280,7 @@ Registry::Registry()
     #endif
     }
 
+    addFileExtensionAlias("glb", "gltf");
     addFileExtensionAlias("osgs", "osg");
     addFileExtensionAlias("osgt", "osg");
     addFileExtensionAlias("osgb", "osg");
