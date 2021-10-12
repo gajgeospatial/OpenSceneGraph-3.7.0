@@ -1,0 +1,92 @@
+#pragma once
+#include <vector>
+struct CDB_Tile_Extent;
+typedef CDB_Tile_Extent* CDB_Tile_ExtentP;
+typedef std::vector<CDB_Tile_ExtentP> CDB_Tile_ExtentPV;
+
+struct CDB_Tile_Extent
+{
+	double	North;
+	double	South;
+	double	East;
+	double	West;
+	CDB_Tile_Extent() : North(0.0), South(0.0), East(0.0), West(0.0)
+	{
+	}
+	CDB_Tile_Extent(double n, double s, double e, double w) : North(n), South(s), East(e), West(w)
+	{
+	}
+	bool Contains(double x, double y)
+	{
+		if ((x >= West) && (x < East) && (y > South) && (y <= North))
+			return true;
+		else
+			return false;
+	}
+	bool operator==(CDB_Tile_Extent& extent)
+	{
+		if ((abs(North - extent.North) < DBL_EPSILON) &&
+			(abs(South - extent.South) < DBL_EPSILON) &&
+			(abs(East - extent.East) < DBL_EPSILON) &&
+			(abs(West - extent.West) < DBL_EPSILON))
+			return true;
+		else
+			return false;
+	}
+	bool IsBoundaryTile(CDB_Tile_Extent& extent)
+	{
+		if ((abs(North - extent.South) < DBL_EPSILON) ||
+			(abs(South - extent.North) < DBL_EPSILON) ||
+			(abs(East - extent.West) < DBL_EPSILON) ||
+			(abs(West - extent.East) < DBL_EPSILON))
+			return true;
+		else
+			return false;
+	}
+	void Center(double &Lat, double &Lon)
+	{
+		Lat = (South + North) * 0.5;
+		Lon = (West + East) * 0.5;
+	}
+	void Set_Extent(double n, double s, double e, double w)
+	{
+		North = n;
+		South = s;
+		East = e;
+		West = w;
+	}
+	CDB_Tile_ExtentPV GenChildExtents(void)
+	{
+		CDB_Tile_ExtentPV ReturnExtents;
+		CDB_Tile_ExtentP Q1 = new CDB_Tile_Extent(North, ((North + South) * 0.5), ((East + West) * 0.5), West);
+		ReturnExtents.push_back(Q1);
+		CDB_Tile_ExtentP Q2 = new CDB_Tile_Extent(North, ((North + South) * 0.5), East, ((East + West) * 0.5));
+		ReturnExtents.push_back(Q2);
+		CDB_Tile_ExtentP Q3 = new CDB_Tile_Extent(((North + South) * 0.5), South, ((East + West) * 0.5), West);
+		ReturnExtents.push_back(Q3);
+		CDB_Tile_ExtentP Q4 = new CDB_Tile_Extent(((North + South) * 0.5), South, East, ((East + West) * 0.5));
+		ReturnExtents.push_back(Q4);
+		return ReturnExtents;
+	}
+	bool Can_Intersect(CDB_Tile_ExtentP Ext)
+	{
+		bool can_intersect = true;
+		if (Ext->North < South)
+		{
+			can_intersect = false;
+		}
+		else if (Ext->South > North)
+		{
+			can_intersect = false;
+		}
+		else if (Ext->East < West)
+		{
+			can_intersect = false;
+		}
+		else if (Ext->West > East)
+		{
+			can_intersect = false;
+		}
+		return can_intersect;
+	}
+};

@@ -28,6 +28,7 @@
 #include <osgDB/FileUtils>
 #include <osgDB/FileNameUtils>
 #include "cdbglobals/ModelFeatureDefs"
+#include "cdbglobals/CDB_Tile_Types"
 
 #ifdef _MSC_VER
 #if _MSC_VER < 1800
@@ -38,42 +39,8 @@
 class GDALDataset;
 struct sqlite3;
 
+#include "cdbglobals/CDB_Tile_Extent"
 
-struct CDB_Tile_Extent
-{
-	double	North;
-	double	South;
-	double	East;
-	double	West;
-	CDB_Tile_Extent() : North(0.0), South(0.0), East(0.0), West(0.0)
-	{
-	}
-	CDB_Tile_Extent(double n, double s, double e, double w) : North(n), South(s), East(e), West(w)
-	{
-	}
-	bool Contains(double x, double y)
-	{
-		if ((x >= West) && (x <= East) && (y >= South) && (y <= North))
-			return true;
-		else
-			return false;
-	}
-	void Center(double &Lat, double &Lon)
-	{
-		Lat = (South + North) * 0.5;
-		Lon = (West + East) * 0.5;
-	}
-	void Set_Extent(double n, double s, double e, double w)
-	{
-		North = n;
-		South = s;
-		East = e;
-		West = w;
-	}
-};
-
-typedef CDB_Tile_Extent * CDB_Tile_ExtentP;
-typedef std::vector<CDB_Tile_ExtentP> CDB_Tile_ExtentPV;
 
 struct GSMediaKeyStruct
 {
@@ -354,18 +321,6 @@ typedef enum
 	IE_Unknown_Test = 3,
 }OGC_CDB_Test_Type;
 
-typedef enum
-{
-	Imagery = 0,
-	Elevation = 1,
-	ImageryCache = 2,
-	ElevationCache = 3,
-	GeoPackageMap = 4,
-	GeoPackageFootPrint = 5,
-	GeoSpecificModel = 6,
-	GeoTypicalModel = 7,
-	CDB_Unknown = 11
-}CDB_Tile_Type;
 
 class CDBGLOBALLIBRARYAPI OGC_IE_Tracking
 {

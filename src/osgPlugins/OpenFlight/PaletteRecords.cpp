@@ -580,6 +580,8 @@ protected:
 			if (document.getDDS2PNG())
 			{
 				size_t ipos = filename.find(".dds");
+                if (ipos == std::string::npos)
+                    ipos = filename.find(".tga");
 				if (ipos != std::string::npos)
 				{
 					size_t spos = 0;

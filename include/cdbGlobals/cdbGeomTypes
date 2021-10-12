@@ -1,0 +1,280 @@
+#pragma once
+#include <cstdlib>
+#include <float.h>
+#include <vector>
+#ifndef __Coord__Defines__
+struct coord2d
+{
+	double	X;
+	double	Y;
+	coord2d() : X(0.0), Y(0.0)
+	{
+	}
+	coord2d(double x, double y) : X(x), Y(y)
+	{
+	}
+	void reverse()
+	{
+		double t = X;
+		X = Y;
+		Y = t;
+	}
+	void init()
+	{
+		X = 0.0;
+		Y = 0.0;
+	}
+	bool operator==(coord2d& coord)
+	{
+		if ((abs(X - coord.X) < DBL_EPSILON) &&
+			(abs(Y - coord.Y) < DBL_EPSILON))
+			return true;
+		else
+			return false;
+	}
+	double dist_to(coord2d& coord)
+	{
+		double dx = X - coord.X;
+		double dy = Y - coord.Y;
+		return sqrt((dx * dx) + (dy * dy));
+	}
+};
+
+typedef std::vector<coord2d> coord2dV;
+
+struct coord3d
+{
+	double	Xpos;
+	double	Ypos;
+	double  Zpos;
+	coord3d() : Xpos(0.0), Ypos(0.0), Zpos(0.0)
+	{
+	}
+	coord3d(double x, double y, double z) : Xpos(x), Ypos(y), Zpos(z)
+	{
+	}
+	bool operator==(coord3d& coord)
+	{
+		if ((abs(Xpos - coord.Xpos) < DBL_EPSILON) &&
+			(abs(Ypos - coord.Ypos) < DBL_EPSILON) &&
+			(abs(Zpos - coord.Zpos) < DBL_EPSILON))
+			return true;
+		else
+			return false;
+	}
+	bool IsZeroVec()
+	{
+		if ((abs(Xpos) < DBL_EPSILON) &&
+			(abs(Ypos) < DBL_EPSILON) &&
+			(abs(Zpos) < DBL_EPSILON))
+			return true;
+		else
+			return false;
+
+	}
+	bool HasZero()
+	{
+		if ((abs(Xpos) < DBL_EPSILON) ||
+			(abs(Ypos) < DBL_EPSILON) ||
+			(abs(Zpos) < DBL_EPSILON))
+			return true;
+		else
+			return false;
+	}
+};
+typedef std::vector<coord3d> coord3dV;
+
+struct coord4d
+{
+	double	Xpos;
+	double	Ypos;
+	double  Zpos;
+	double  Wpos;
+	coord4d() : Xpos(0.0), Ypos(0.0), Zpos(0.0), Wpos(0.0)
+	{
+	}
+	coord4d(double x, double y, double z, double w) : Xpos(x), Ypos(y), Zpos(z), Wpos(w)
+	{
+	}
+	bool operator==(coord4d& coord)
+	{
+		if ((abs(Xpos - coord.Xpos) < DBL_EPSILON) &&
+			(abs(Ypos - coord.Ypos) < DBL_EPSILON) &&
+			(abs(Zpos - coord.Zpos) < DBL_EPSILON) &&
+			(abs(Wpos - coord.Wpos) < DBL_EPSILON))
+			return true;
+		else
+			return false;
+	}
+	bool operator!=(coord4d& coord)
+	{
+		if ((abs(Xpos - coord.Xpos) > DBL_EPSILON) ||
+			(abs(Ypos - coord.Ypos) > DBL_EPSILON) ||
+			(abs(Zpos - coord.Zpos) > DBL_EPSILON) ||
+			(abs(Wpos - coord.Wpos) > DBL_EPSILON))
+			return true;
+		else
+			return false;
+	}
+	bool IsZeroVec()
+	{
+		if ((abs(Xpos) < DBL_EPSILON) &&
+			(abs(Ypos) < DBL_EPSILON) &&
+			(abs(Zpos) < DBL_EPSILON) &&
+			(abs(Wpos) < DBL_EPSILON))
+			return true;
+		else
+			return false;
+
+	}
+	bool HasZero()
+	{
+		if ((abs(Xpos) < DBL_EPSILON) ||
+			(abs(Ypos) < DBL_EPSILON) ||
+			(abs(Zpos) < DBL_EPSILON) ||
+			(abs(Wpos) < DBL_EPSILON))
+			return true;
+		else
+			return false;
+	}
+};
+typedef std::vector<coord4d> coord4dV;
+
+struct coord2f
+{
+	float	X;
+	float	Y;
+	coord2f() : X(0.0f), Y(0.0f)
+	{
+	}
+	coord2f(float x, float y) : X(x), Y(y)
+	{
+	}
+	void reverse()
+	{
+		float t = X;
+		X = Y;
+		Y = t;
+	}
+	bool operator==(coord2f& coord)
+	{
+		if ((abs(X - coord.X) < FLT_EPSILON) &&
+			(abs(Y - coord.Y) < FLT_EPSILON))
+			return true;
+		else
+			return false;
+	}
+};
+
+typedef std::vector<coord2f> coord2fV;
+
+struct coord3f
+{
+	float	Xpos;
+	float	Ypos;
+	float  Zpos;
+	coord3f() : Xpos(0.0f), Ypos(0.0f), Zpos(0.0f)
+	{
+	}
+	coord3f(float x, float y, float z) : Xpos(x), Ypos(y), Zpos(z)
+	{
+	}
+	bool operator==(coord3f& coord)
+	{
+		if ((abs(Xpos - coord.Xpos) < FLT_EPSILON) &&
+			(abs(Ypos - coord.Ypos) < FLT_EPSILON) &&
+			(abs(Zpos - coord.Zpos) < FLT_EPSILON))
+			return true;
+		else
+			return false;
+	}
+	bool IsZeroVec()
+	{
+		if ((abs(Xpos) < FLT_EPSILON) &&
+			(abs(Ypos) < FLT_EPSILON) &&
+			(abs(Zpos) < FLT_EPSILON))
+			return true;
+		else
+			return false;
+
+	}
+	bool HasZero()
+	{
+		if ((abs(Xpos) < FLT_EPSILON) ||
+			(abs(Ypos) < FLT_EPSILON) ||
+			(abs(Zpos) < FLT_EPSILON))
+			return true;
+		else
+			return false;
+	}
+};
+typedef std::vector<coord3f> coord3fV;
+
+struct coord4f
+{
+	float	Xpos;
+	float	Ypos;
+	float   Zpos;
+	float   Wpos;
+	coord4f() : Xpos(0.0f), Ypos(0.0f), Zpos(0.0f), Wpos(0.0f)
+	{
+	}
+	coord4f(float x, float y, float z, float w) : Xpos(x), Ypos(y), Zpos(z), Wpos(w)
+	{
+	}
+	bool operator==(coord4f& coord)
+	{
+		if ((abs(Xpos - coord.Xpos) < FLT_EPSILON) &&
+			(abs(Ypos - coord.Ypos) < FLT_EPSILON) &&
+			(abs(Zpos - coord.Zpos) < FLT_EPSILON) &&
+			(abs(Wpos - coord.Wpos) < FLT_EPSILON))
+			return true;
+		else
+			return false;
+	}
+	bool IsZeroVec()
+	{
+		if ((abs(Xpos) < FLT_EPSILON) &&
+			(abs(Ypos) < FLT_EPSILON) &&
+			(abs(Zpos) < FLT_EPSILON) &&
+			(abs(Wpos) < FLT_EPSILON))
+			return true;
+		else
+			return false;
+
+	}
+	bool HasZero()
+	{
+		if ((abs(Xpos) < FLT_EPSILON) ||
+			(abs(Ypos) < FLT_EPSILON) ||
+			(abs(Zpos) < FLT_EPSILON) ||
+			(abs(Wpos) < FLT_EPSILON))
+			return true;
+		else
+			return false;
+	}
+};
+typedef std::vector<coord4f> coord4fV;
+
+struct coord2i
+{
+	int X;
+	int Y;
+
+	coord2i() :X(0), Y(0)
+	{
+	};
+	coord2i(int x, int y) : X(x), Y(y)
+	{
+	};
+	bool operator==(coord2i& coord)
+	{
+		if ((X == coord.X) &&
+			(Y == coord.Y))
+			return true;
+		else
+			return false;
+	}
+};
+#define __Coord__Defines__
+#endif

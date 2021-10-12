@@ -1,0 +1,18 @@
+#pragma once
+#ifndef __CDB_Tile_Types__
+typedef enum
+{
+	Imagery = 0,
+	Elevation = 1,
+	ImageryCache = 2,
+	ElevationCache = 3,
+	GeoPackageMap = 4,
+	GeoPackageFootPrint = 5,
+	GeoSpecificModel = 6,
+	GeoTypicalModel = 7,
+	GeoSpecTypeModel = 8,
+	T2DModel = 9,
+	CDB_Unknown = 11
+}CDB_Tile_Type;
+#define __CDB_Tile_Types__
+#endif

@@ -636,7 +636,10 @@
     <ClCompile Include="..\..\..\src\cdbGlobals\dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\include\cdbGlobals\cdbGeomTypes" />
     <None Include="..\..\..\include\cdbGlobals\cdbGlobals" />
+    <None Include="..\..\..\include\cdbGlobals\CDB_Tile_Extent" />
+    <None Include="..\..\..\include\cdbGlobals\CDB_Tile_Types" />
     <None Include="..\..\..\include\cdbGlobals\ModelFeatureDefs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

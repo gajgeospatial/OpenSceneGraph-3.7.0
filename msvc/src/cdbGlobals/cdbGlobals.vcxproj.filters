@@ -37,5 +37,14 @@
     <None Include="..\..\..\include\cdbGlobals\ModelFeatureDefs">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="..\..\..\include\cdbGlobals\CDB_Tile_Extent">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\..\..\include\cdbGlobals\cdbGeomTypes">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\..\..\include\cdbGlobals\CDB_Tile_Types">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

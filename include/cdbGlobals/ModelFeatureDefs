@@ -3,50 +3,7 @@
 
 #include <gdal_priv.h>
 #include <ogrsf_frmts.h>
-struct coord2d
-{
-	double	Xpos;
-	double	Ypos;
-	coord2d() : Xpos(0.0), Ypos(0.0)
-	{
-	}
-	coord2d(double x, double y) : Xpos(x), Ypos(y)
-	{
-	}
-	bool operator==(coord2d &coord)
-	{
-		if ((abs(Xpos - coord.Xpos) < DBL_EPSILON) &&
-			(abs(Ypos - coord.Ypos) < DBL_EPSILON))
-			return true;
-		else
-			return false;
-	}
-};
-
-typedef std::vector<coord2d> coord2dV;
-
-struct coord3d
-{
-	double	Xpos;
-	double	Ypos;
-	double  Zpos;
-	coord3d() : Xpos(0.0), Ypos(0.0), Zpos(0.0)
-	{
-	}
-	coord3d(double x, double y, double z) : Xpos(x), Ypos(y), Zpos(z)
-	{
-	}
-	bool operator==(coord3d &coord)
-	{
-		if ((abs(Xpos - coord.Xpos) < DBL_EPSILON) &&
-			(abs(Ypos - coord.Ypos) < DBL_EPSILON) &&
-			(abs(Zpos - coord.Zpos) < DBL_EPSILON))
-			return true;
-		else
-			return false;
-	}
-};
-typedef std::vector<coord3d> coord3dV;
+#include "cdbGlobals/cdbGeomTypes"
 
 typedef enum 
 {
