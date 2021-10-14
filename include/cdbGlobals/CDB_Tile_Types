@@ -11,7 +11,8 @@ typedef enum
 	GeoSpecificModel = 6,
 	GeoTypicalModel = 7,
 	GeoSpecTypeModel = 8,
-	T2DModel = 9,
+	CDBMaterial = 9,
+	T2DModel = 10,
 	CDB_Unknown = 11
 }CDB_Tile_Type;
 #define __CDB_Tile_Types__
