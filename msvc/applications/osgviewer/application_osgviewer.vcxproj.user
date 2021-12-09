@@ -8,6 +8,10 @@
     <LocalDebuggerCommandArguments>--window 0 0 1920 1080 E:\Source\Simlat\Model\6017_Building1\assets\model\Building1.flt</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">
+    <LocalDebuggerCommandArguments>--window 0 0 1920 1080 E:\Source\Simlat\Model\6017_Building1\assets\model\Building1.flt</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerCommandArguments>--window 0 0 1920 1080 E:\Source\Simlat\Model\6017_Building1\assets\model\Building1.flt</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
