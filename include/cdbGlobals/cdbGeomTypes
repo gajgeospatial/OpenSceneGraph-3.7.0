@@ -5,37 +5,37 @@
 #ifndef __Coord__Defines__
 struct coord2d
 {
-	double	X;
-	double	Y;
-	coord2d() : X(0.0), Y(0.0)
+	double	Xpos;
+	double	Ypos;
+	coord2d() : Xpos(0.0), Ypos(0.0)
 	{
 	}
-	coord2d(double x, double y) : X(x), Y(y)
+	coord2d(double x, double y) : Xpos(x), Ypos(y)
 	{
 	}
 	void reverse()
 	{
-		double t = X;
-		X = Y;
-		Y = t;
+		double t = Xpos;
+		Xpos = Ypos;
+		Ypos = t;
 	}
 	void init()
 	{
-		X = 0.0;
-		Y = 0.0;
+		Xpos = 0.0;
+		Ypos = 0.0;
 	}
 	bool operator==(coord2d& coord)
 	{
-		if ((abs(X - coord.X) < DBL_EPSILON) &&
-			(abs(Y - coord.Y) < DBL_EPSILON))
+		if ((abs(Xpos - coord.Xpos) < DBL_EPSILON) &&
+			(abs(Ypos - coord.Ypos) < DBL_EPSILON))
 			return true;
 		else
 			return false;
 	}
 	double dist_to(coord2d& coord)
 	{
-		double dx = X - coord.X;
-		double dy = Y - coord.Y;
+		double dx = Xpos - coord.Xpos;
+		double dy = Ypos - coord.Ypos;
 		return sqrt((dx * dx) + (dy * dy));
 	}
 };
@@ -142,24 +142,24 @@ typedef std::vector<coord4d> coord4dV;
 
 struct coord2f
 {
-	float	X;
-	float	Y;
-	coord2f() : X(0.0f), Y(0.0f)
+	float	Xpos;
+	float	Ypos;
+	coord2f() : Xpos(0.0f), Ypos(0.0f)
 	{
 	}
-	coord2f(float x, float y) : X(x), Y(y)
+	coord2f(float x, float y) : Xpos(x), Ypos(y)
 	{
 	}
 	void reverse()
 	{
-		float t = X;
-		X = Y;
-		Y = t;
+		float t = Xpos;
+		Xpos = Ypos;
+		Ypos = t;
 	}
 	bool operator==(coord2f& coord)
 	{
-		if ((abs(X - coord.X) < FLT_EPSILON) &&
-			(abs(Y - coord.Y) < FLT_EPSILON))
+		if ((abs(Xpos - coord.Xpos) < FLT_EPSILON) &&
+			(abs(Ypos - coord.Ypos) < FLT_EPSILON))
 			return true;
 		else
 			return false;
@@ -172,7 +172,7 @@ struct coord3f
 {
 	float	Xpos;
 	float	Ypos;
-	float  Zpos;
+	float   Zpos;
 	coord3f() : Xpos(0.0f), Ypos(0.0f), Zpos(0.0f)
 	{
 	}
@@ -258,19 +258,19 @@ typedef std::vector<coord4f> coord4fV;
 
 struct coord2i
 {
-	int X;
-	int Y;
+	int Xpos;
+	int Ypos;
 
-	coord2i() :X(0), Y(0)
+	coord2i() :Xpos(0), Ypos(0)
 	{
 	};
-	coord2i(int x, int y) : X(x), Y(y)
+	coord2i(int x, int y) : Xpos(x), Ypos(y)
 	{
 	};
 	bool operator==(coord2i& coord)
 	{
-		if ((X == coord.X) &&
-			(Y == coord.Y))
+		if ((Xpos == coord.Xpos) &&
+			(Ypos == coord.Ypos))
 			return true;
 		else
 			return false;
