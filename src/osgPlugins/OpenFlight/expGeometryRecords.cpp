@@ -112,7 +112,7 @@ FltExportVisitor::atLeastOneMesh( const osg::Geometry& geom ) const
 }
 
 void
-FltExportVisitor::writeFace( const osg::Geode& geode, const osg::Geometry& geom, GLenum mode )
+FltExportVisitor::writeFace( const osg::Node& geode, const osg::Geometry& geom, GLenum mode )
 {
     enum DrawMode
     {
@@ -354,7 +354,7 @@ FltExportVisitor::writeFace( const osg::Geode& geode, const osg::Geometry& geom,
 
 
 void
-FltExportVisitor::writeMesh( const osg::Geode& geode, const osg::Geometry& geom )
+FltExportVisitor::writeMesh( const osg::Node& geode, const osg::Geometry& geom )
 {
     enum DrawMode
     {
@@ -961,7 +961,7 @@ FltExportVisitor::writeUVList( int numVerts, const osg::Geometry& geom, unsigned
 
 
 void
-FltExportVisitor::handleDrawArrays( const osg::DrawArrays* da, const osg::Geometry& geom, const osg::Geode& geode )
+FltExportVisitor::handleDrawArrays( const osg::DrawArrays* da, const osg::Geometry& geom, const osg::Node& geode )
 {
     if (!da)
     {
@@ -1034,7 +1034,7 @@ FltExportVisitor::handleDrawArrays( const osg::DrawArrays* da, const osg::Geomet
 }
 
 void
-FltExportVisitor::handleDrawArrayLengths( const osg::DrawArrayLengths* dal, const osg::Geometry& geom, const osg::Geode& geode )
+FltExportVisitor::handleDrawArrayLengths( const osg::DrawArrayLengths* dal, const osg::Geometry& geom, const osg::Node& geode )
 {
     if (!dal)
     {
@@ -1128,7 +1128,7 @@ FltExportVisitor::handleDrawArrayLengths( const osg::DrawArrayLengths* dal, cons
 }
 
 void
-FltExportVisitor::handleDrawElements( const osg::DrawElements* de, const osg::Geometry& geom, const osg::Geode& geode )
+FltExportVisitor::handleDrawElements( const osg::DrawElements* de, const osg::Geometry& geom, const osg::Node& geode )
 {
     if (!de) return;
 

@@ -81,33 +81,77 @@ TexturePaletteManager::write( DataOutputStream& dos ) const
 		{
 			if (_fltOpt.getRemapTextureFilePath() == ExportOptions::GeoSpecific)
 			{
-				std::string temp = osgDB::getSimpleFileName(texture->getImage()->getFileName());
-				size_t pos = temp.find("_W");
-				if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+				std::string temp = texture->getImage()->getFileName();
+				size_t gpos;
+				if ((gpos = temp.find("GTModel")) != std::string::npos)
 				{
-					temp = temp.substr(pos + 1);
-					pos = temp.find("_");
+					fileName = "..\\..\\..\\..\\..\\..\\" + temp.substr(gpos);
+				}
+				else
+				{
+					temp = osgDB::getSimpleFileName(temp);
+					size_t pos = temp.find("_W");
 					if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
 					{
 						temp = temp.substr(pos + 1);
+						pos = temp.find("_");
+						if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+						{
+							temp = temp.substr(pos + 1);
+						}
 					}
+					else
+					{
+						pos = temp.find("_R");
+						if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+						{
+							temp = temp.substr(pos + 1);
+							pos = temp.find("_");
+							if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+							{
+								temp = temp.substr(pos + 1);
+							}
+						}
+					}
+					fileName = _fltOpt.getTextureRemapPredicate() + temp;
 				}
-				fileName = _fltOpt.getTextureRemapPredicate() + temp;
 			}
 			else if (_fltOpt.getRemapTextureFilePath() == ExportOptions::GeoSpecific32)
 			{
-				std::string temp = osgDB::getSimpleFileName(texture->getImage()->getFileName());
-				size_t pos = temp.find("_L");
-				if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+				std::string temp = texture->getImage()->getFileName();
+				size_t gpos;
+				if ((gpos = temp.find("GTModel")) != std::string::npos)
 				{
-					temp = temp.substr(pos + 1);
-					pos = temp.find("_");
+					fileName = "..\\..\\..\\..\\..\\..\\" + temp.substr(gpos);
+				}
+				else
+				{
+					temp = osgDB::getSimpleFileName(temp);
+					size_t pos = temp.find("_L");
 					if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
 					{
 						temp = temp.substr(pos + 1);
+						pos = temp.find("_");
+						if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+						{
+							temp = temp.substr(pos + 1);
+						}
 					}
+					else
+					{
+						pos = temp.find("_R");
+						if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+						{
+							temp = temp.substr(pos + 1);
+							pos = temp.find("_");
+							if ((pos != std::string::npos) && ((pos + 1) < temp.length()))
+							{
+								temp = temp.substr(pos + 1);
+							}
+						}
+					}
+					fileName = _fltOpt.getTextureRemapPredicate() + temp;
 				}
-				fileName = _fltOpt.getTextureRemapPredicate() + temp;
 			}
 			else if (_fltOpt.getRemapTextureFilePath() == ExportOptions::GeoTypical)
 			{

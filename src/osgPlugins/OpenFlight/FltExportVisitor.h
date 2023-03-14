@@ -77,6 +77,7 @@ public:
     virtual void apply( osg::Transform& node );
     virtual void apply( osg::LightSource& node );
     virtual void apply( osg::Geode& node );
+    virtual void apply(osg::Drawable &node);
     virtual void apply( osg::Node& node );
     virtual void apply( osg::ProxyNode& node );
 
@@ -129,8 +130,8 @@ public:
     }
 
     // Geometry records
-    void writeFace( const osg::Geode& geode, const osg::Geometry& geom, GLenum mode );
-    void writeMesh( const osg::Geode& geode, const osg::Geometry& geom );
+    void writeFace( const osg::Node &geode, const osg::Geometry& geom, GLenum mode );
+    void writeMesh( const osg::Node &geode, const osg::Geometry& geom );
     int writeVertexList( int first, unsigned int count );
     int writeVertexList( const std::vector<unsigned int>& indices, unsigned int count );
     void writeMeshPrimitive( const std::vector<unsigned int>& indices, GLenum mode );
@@ -159,16 +160,16 @@ public:
 private:
     // Methods for handling different primitive set types.
     //   These are defined in expGeometryRecords.cpp.
-    void handleDrawArrays( const osg::DrawArrays* da, const osg::Geometry& geom, const osg::Geode& geode );
-    void handleDrawArrayLengths( const osg::DrawArrayLengths* dal, const osg::Geometry& geom, const osg::Geode& geode );
-    void handleDrawElements( const osg::DrawElements* de, const osg::Geometry& geom, const osg::Geode& geode );
+    void handleDrawArrays( const osg::DrawArrays* da, const osg::Geometry& geom, const osg::Node& geode );
+    void handleDrawArrayLengths( const osg::DrawArrayLengths* dal, const osg::Geometry& geom, const osg::Node& geode );
+    void handleDrawElements( const osg::DrawElements* de, const osg::Geometry& geom, const osg::Node& geode );
 
     bool isLit( const osg::Geometry& geom ) const;
     bool isTextured( int unit, const osg::Geometry& geom ) const;
     bool isMesh( const GLenum mode ) const;
     bool atLeastOneFace( const osg::Geometry& geom ) const;
     bool atLeastOneMesh( const osg::Geometry& geom ) const;
-
+    void processDrawable(osg::Drawable& node);
     osg::ref_ptr< ExportOptions > _fltOpt;
 
     // _dos is the primary output stream, produces the actual .flt file.
