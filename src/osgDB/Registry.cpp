@@ -459,6 +459,8 @@ Registry::Registry()
     addFileExtensionAlias("igs",  "opencascade");
     addFileExtensionAlias("iges", "opencascade");
 
+    // asc point could files.
+    addFileExtensionAlias("asc", "3dc");
 
     // add built-in mime-type extension mappings
     for( int i=0; ; i+=2 )
@@ -1127,9 +1129,8 @@ std::string Registry::findLibraryFileImplementation(const std::string& filename,
     std::string simpleFileName = getSimpleFileName(filename);
     if (simpleFileName!=filename)
     {
-        std::string myfileFound = findFileInPath(simpleFileName, filepath,caseSensitivity);
-        if (!myfileFound.empty()) 
-			return myfileFound;
+        fileFound = findFileInPath(simpleFileName, filepath,caseSensitivity);
+        if (!fileFound.empty()) return fileFound;
     }
 
     // failed return empty string.

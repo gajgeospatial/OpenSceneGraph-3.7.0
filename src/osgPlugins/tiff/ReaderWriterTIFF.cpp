@@ -222,7 +222,7 @@ toff_t libtiffOStreamSeekProc(thandle_t fd, toff_t off, int i)
         // position required past the end of the stream so we need to insert extra characters to
         // ensure the stream is big enough to encompass the new the position.
         fout->seekp(0, std::ios::end);
-        for(toff_t ii=stream_end; ii<pos_required; ++ii)
+        for(toff_t is=stream_end; is<pos_required; ++is)
         {
             fout->put(char(0));
         }

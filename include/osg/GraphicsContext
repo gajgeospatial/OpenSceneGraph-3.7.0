@@ -76,7 +76,7 @@ class OSG_EXPORT GraphicsContext : public Object
             int width;
             int height;
 
-            // provide a hint as to which WindowingSystemInterface implementation to use, i.e. "X11", "_Win32", "Cocoa", "Carbon" etc.
+            // provide a hint as to which WindowingSystemInterface implementation to use, i.e. "X11", "Win32", "Cocoa", "Carbon" etc.
             // if the windowingSystemPreference string is empty (default) then return the first available WindowingSystemInterface that
             // has been registered with the osg::GraphiccsContext::WindowingSystemInterfaces singleton
             // if the windowingSystemPreference string is not empty then return the first WindowingSystemInterface that matches

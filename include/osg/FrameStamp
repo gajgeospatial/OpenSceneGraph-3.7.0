@@ -16,7 +16,7 @@
 
 #include <osg/Referenced>
 
-#if defined(__sgi) || (defined(_WIN32) && !defined(__MWERKS__))
+#if defined(__sgi) || (defined(WIN32) && !defined(__MWERKS__))
 #include <time.h>
 #else
 #include <ctime>

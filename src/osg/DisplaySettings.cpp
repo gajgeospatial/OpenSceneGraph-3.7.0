@@ -22,15 +22,15 @@
 #include <algorithm>
 #include <string.h>
 
-using namespace osg;
-using namespace std;
-
 #if defined(_WIN32) && !defined(__CYGWIN__)
 #include<windows.h>
 extern "C" { OSG_EXPORT DWORD NvOptimusEnablement=0x00000001; }
 #else
 extern "C" { int NvOptimusEnablement=0x00000001; }
 #endif
+
+using namespace osg;
+using namespace std;
 
 void DisplaySettings::setNvOptimusEnablement(int value)
 {
@@ -120,7 +120,7 @@ void DisplaySettings::setDisplaySettings(const DisplaySettings& vs)
 
     _vertexBufferHint = vs._vertexBufferHint;
 
-    setShaderHint(_shaderHint);
+    setShaderHint(vs._shaderHint);
 
     _keystoneHint = vs._keystoneHint;
     _keystoneFileNames = vs._keystoneFileNames;
