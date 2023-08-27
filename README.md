@@ -123,3 +123,7 @@ Be sure to set the THIRDPARTY_PATH to the path containing your thirdparty depend
 Once this completes an XCode project will have been generated in the osg root folder. Open the generated Xcode project, select the example_osgViewerIPhone target. In 'General' tab set a development team.
 
 Once this is done you should be able to build and deploy the `example_osgViewerIPhone` target on your device.
+
+Note this repository contains modifications allowing the current osgEarth capabity to load CDB. This requires modifications to the OpenFlight plugin, archive access, as well as the cdbGlobals library.
+The zip plugin in this directory uses libzip which at some point was incorporated by osg and then later removed. The zip plugin contains modifications to allow it to process data from geoPackage files
+working with the cdbGlobals library. 
