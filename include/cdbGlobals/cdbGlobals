@@ -280,6 +280,8 @@ public:
 
 	ModelOgrTileP FindVectorTile(double lat, double lon);
 	std::string ToWFSLayer(std::string LayerName, int spos = 4);
+	void Set_Use_GeoPackage_Features(bool value);
+	bool Get_Use_GeoPackage_Features();
 
 	static CDB_Global * getInstance(void);
 
@@ -290,6 +292,7 @@ private:
 	bool s_LOD0_GS_FullStack;
 	bool s_LOD0_GT_FullStack;
 	bool s_CDB_Tile_Be_Verbose;
+	bool s_Feaatures_In_GeoPackage; // CDB version 1.2
 
 	int  m_GlobalTileLOD;
 	GBLConnectionType m_ConType;

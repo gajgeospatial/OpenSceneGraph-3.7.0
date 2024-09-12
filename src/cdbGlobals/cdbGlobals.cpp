@@ -46,6 +46,7 @@ CDB_Global::CDB_Global() : m_ogrDataset(NULL), m_ConType(ConnOther)
 	s_LOD0_GS_FullStack = false;
 	s_LOD0_GT_FullStack = false;
 	s_CDB_Tile_Be_Verbose = false;
+	s_Feaatures_In_GeoPackage = false;
 	m_doneList.clear();
 }
 
@@ -728,6 +729,16 @@ ModelOgrTileP CDB_Global::FindVectorTile(double lat, double lon)
 		}
 		return NULL;
 	}
+}
+
+void CDB_Global::Set_Use_GeoPackage_Features(bool value)
+{
+	s_Feaatures_In_GeoPackage = value;
+}
+
+bool CDB_Global::Get_Use_GeoPackage_Features()
+{
+	return s_Feaatures_In_GeoPackage;
 }
 
 CDB_Global * CDB_Global::getInstance(void)
