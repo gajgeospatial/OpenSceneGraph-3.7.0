@@ -5,6 +5,11 @@
 #include <osgDB/FileNameUtils>
 
 #include "OSGA_Archive.h"
+//Visual Studio deleted define 
+#ifndef _FPOSOFF
+// TRANSITION: Boost nonconformingly uses this macro
+#define _FPOSOFF(fp) (static_cast<long long>(fp))
+#endif
 
 using namespace osgDB;
 
