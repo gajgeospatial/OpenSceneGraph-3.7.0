@@ -212,10 +212,13 @@ class Document
         void setKeepExternalReferences( bool flag) { _keepExternalReferences=flag; }
         bool getKeepExternalReferences() const { return _keepExternalReferences; }
 
-		//Option requred to read Common Database (CDB) model as per specification
-		void setTextureInArchive(bool flag) { _textureInarchive = flag; }
-		bool getTextureInArchive() const { return _textureInarchive; }
-		//Option for in production Common Database (CDB) (models and textures not in archives)
+        //Option requred to read Common Database (CDB) model as per specification
+        void setTextureInArchive(bool flag) { _textureInarchive = flag; }
+        bool getTextureInArchive() const { return _textureInarchive; }
+        //Option to search archives in reverse
+        void setReverseArchives(bool flag) { _reverseArchives = flag; }
+        bool getReverseArchives() const { return _reverseArchives; }
+        //Option for in production Common Database (CDB) (models and textures not in archives)
 		void setRemap2Directory(bool flag) { _remap2Directory = flag; }
 		bool getRemap2Directory() const { return _remap2Directory; }
 
@@ -264,6 +267,7 @@ class Document
         bool                        _readObjectRecordData;
         bool                        _preserveNonOsgAttrsAsUserData;
 		bool						_textureInarchive;
+        bool                        _reverseArchives;
 		bool						_remap2Directory;
 		bool						_CDB_Verify;
 		bool						_CDBModel_Has_Sigsize;

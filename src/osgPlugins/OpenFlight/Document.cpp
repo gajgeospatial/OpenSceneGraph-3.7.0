@@ -50,6 +50,7 @@ Document::Document() :
     _lightPointAnimationPoolParent(false),
 	_shaderPoolParent(false),
 	_textureInarchive(false),
+	_reverseArchives(false),
 	_remap2Directory(false),
 	_Archive(NULL),
 	_Archive_FileName(""),

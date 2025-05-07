@@ -251,8 +251,9 @@ class FLTReaderWriter : public ReaderWriter
             supportsOption( "tempDir=<dir>", "Export option: Specifies the directory to use for creation of temporary files. If not specified, the directory is taken from the file name. If the file doesn't contain a path, the current working directory is used. Applications should set this to the name of their app-specific temp directory. If the path contains spaces, use double quotes to ensure correct parsing. Examples: \"tempDir=/tmp\", \"tempDir=\"C:\\My Temp Dir\"." );
             supportsOption( "lighting=<ON|OFF>", "Export option: Specifies a default enable/disable state for lighting, for Nodes in the exported scene graph that don't set it explicitly. By default, the exporter assumes lighting is enabled (GL_LIGHTING ON). Set this to either ON or OFF. Example: \"lighting=OFF\"." );
 			supportsOption("stripTextureFilePath", "Export option: If present in the Options string, the exporter strips the path from texture file names, and writes only the texture file name to the FLT Texture Palette. By default, the exporter doesn't strip the path, and the name written to the Texture Palette is taken directly from the osg::Image object referenced by the osg::Texture2D StateAttribute.");
-			supportsOption("TextureInArchive", "Import option: If present in the Options string, an archive name is located in the dbpath. When this option is present textures are mapped to and read from the named archive file according to the CDB specification");
-			supportsOption("Remap2Directory", "Import option: If present in the Options string, directory names are parsed from the dbpath. When this option is present textures are mapped to and read from the named directory according to the CDB specification");
+            supportsOption("TextureInArchive", "Import option: If present in the Options string, an archive name is located in the dbpath. When this option is present textures are mapped to and read from the named archive file according to the CDB specification");
+            supportsOption("ReverseArchives", "Import option: If present in the Options string, archives are assumed to be in a non optimal state where textures are not stored in the same lod as the model");
+            supportsOption("Remap2Directory", "Import option: If present in the Options string, directory names are parsed from the dbpath. When this option is present textures are mapped to and read from the named directory according to the CDB specification");
 			supportsOption("CDBVerification", "Import option: If present in the Options string, CDB Rules Messages are output durring model load. When this option is present textures are mapped to and read from the named directory according to the CDB specification");
 			supportsOption("Switchdds2png", "Import option: If present in the Options string, if a dds texture is found and a png texture of the same name is found in the search path the png texuter is used");
 		}
@@ -422,8 +423,11 @@ class FLTReaderWriter : public ReaderWriter
                 document.setKeepExternalReferences((options->getOptionString().find("keepExternalReferences")!=std::string::npos));
                 OSG_DEBUG << readerMsg << "keepExternalReferences=" << document.getKeepExternalReferences() << std::endl;
 
-				document.setTextureInArchive((options->getOptionString().find("TextureInArchive") != std::string::npos));
-				OSG_DEBUG << readerMsg << "TextureInArchive=" << document.getTextureInArchive() << std::endl;
+                document.setTextureInArchive((options->getOptionString().find("TextureInArchive") != std::string::npos));
+                OSG_DEBUG << readerMsg << "TextureInArchive=" << document.getTextureInArchive() << std::endl;
+
+                document.setReverseArchives((options->getOptionString().find("ReverseArchives") != std::string::npos));
+                OSG_DEBUG << readerMsg << "ReverseArchives=" << document.getReverseArchives() << std::endl;
 
 				document.setRemap2Directory((options->getOptionString().find("Remap2Directory") != std::string::npos));
 				OSG_DEBUG << readerMsg << "Remap2Directory=" << document.getRemap2Directory() << std::endl;
