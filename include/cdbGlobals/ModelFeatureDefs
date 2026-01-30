@@ -482,9 +482,132 @@ struct CDB_Model_Runtime_Class
 	}
 
 };
+
+struct CDB_AP_Light_Class
+{
+	std::string modt;
+	int			ltyp;
+	int			fsc;
+	std::string facc;
+	std::string cnam;
+	int			cmix;
+	int			ahgt;
+
+	CDB_AP_Light_Class() : modt(""), ltyp(0), fsc(0), facc(""), cnam(""), cmix(0), ahgt(0)
+	{
+	}
+
+	std::string set_class(OGRFeature* f)
+	{
+		int modt_Index = f->GetFieldIndex("MODT");
+		if (modt_Index >= 0)
+		{
+			modt = f->GetFieldAsString(modt_Index);
+		}
+
+		int ltyp_Index = f->GetFieldIndex("LTYP");
+		if (ltyp_Index >= 0)
+		{
+			ltyp = f->GetFieldAsInteger(ltyp_Index);
+		}
+
+		int fsc_Index = f->GetFieldIndex("FSC");
+		if (fsc_Index >= 0)
+		{
+			fsc = f->GetFieldAsInteger(fsc_Index);
+		}
+
+		int facc_Index = f->GetFieldIndex("FACC");
+		if (facc_Index >= 0)
+		{
+			facc = f->GetFieldAsString(facc_Index);
+		}
+
+		int cnam_Index = f->GetFieldIndex("CNAM");
+		if (cnam_Index >= 0)
+		{
+			cnam = f->GetFieldAsString(cnam_Index);
+		}
+
+		int cmix_Index = f->GetFieldIndex("CMIX");
+		if (cmix_Index >= 0)
+		{
+			cmix = f->GetFieldAsInteger(cmix_Index);
+		}
+
+		int ahgt_Index = f->GetFieldIndex("AHGT");
+		if (ahgt_Index >= 0)
+		{
+			ahgt = f->GetFieldAsInteger(ahgt_Index);
+		}
+
+		return cnam;
+	}
+
+};
+typedef CDB_AP_Light_Class * CDB_AP_Light_ClassP;
+
+struct CDB_Env_Light_Class
+{
+	int			ahgt;
+	int			cmix;
+	std::string cnam;
+	std::string facc;
+	int			fsc;
+	int			ltyp;
+
+	CDB_Env_Light_Class() : ahgt(0), cmix(0), cnam(""), facc(""), fsc(0), ltyp(0)
+	{
+	}
+
+	std::string set_class(OGRFeature* f)
+	{
+		int ahgt_Index = f->GetFieldIndex("AHGT");
+		if (ahgt_Index >= 0)
+		{
+			ahgt = f->GetFieldAsInteger(ahgt_Index);
+		}
+
+		int cmix_Index = f->GetFieldIndex("CMIX");
+		if (cmix_Index >= 0)
+		{
+			cmix = f->GetFieldAsInteger(cmix_Index);
+		}
+
+		int cnam_Index = f->GetFieldIndex("CNAM");
+		if (cnam_Index >= 0)
+		{
+			cnam = f->GetFieldAsString(cnam_Index);
+		}
+
+		int facc_Index = f->GetFieldIndex("FACC");
+		if (facc_Index >= 0)
+		{
+			facc = f->GetFieldAsString(facc_Index);
+		}
+
+		int fsc_Index = f->GetFieldIndex("FSC");
+		if (fsc_Index >= 0)
+		{
+			fsc = f->GetFieldAsInteger(fsc_Index);
+		}
+
+		int ltyp_Index = f->GetFieldIndex("LTYP");
+		if (ltyp_Index >= 0)
+		{
+			ltyp = f->GetFieldAsInteger(ltyp_Index);
+		}
+
+		return cnam;
+	}
+};
+typedef CDB_Env_Light_Class * CDB_Env_Light_ClassP;
+
 typedef CDB_Model_Runtime_Class * CDB_Model_Runtime_ClassP;
 typedef std::vector<CDB_Model_Runtime_Class> CDB_Model_RuntimeVec;
 typedef std::vector<CDB_Model_Runtime_ClassP> CDB_Model_RuntimePV;
 typedef std::map<std::string, CDB_Model_Runtime_Class> CDB_Model_RuntimeMap;
+typedef std::map<std::string, CDB_AP_Light_Class> CDB_APLights_RuntimeMap;
+typedef std::map<std::string, CDB_Env_Light_Class> CDB_EnvLights_RuntimeMap;
 typedef CDB_Model_RuntimeMap * CDB_Model_RuntimeMapP;
 typedef std::vector<CDB_Model_RuntimeMapP> CDB_Model_RuntimeMapPV;
