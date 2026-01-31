@@ -749,4 +749,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\..\..\..\OpenSourceProperties.props" Condition="exists('..\..\..\..\OpenSourceProperties.props')" />
+  </ImportGroup>
 </Project>
