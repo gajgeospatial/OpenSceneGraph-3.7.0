@@ -1,4 +1,5 @@
 #pragma once
+// Copyright (c) 2020-2026 GAJ-Geospatial Enterprizes LLC, Orlando FL
 // Copyright (c) 2016-2017 Visual Awareness Technologies and Consulting Inc, St Petersburg FL
 
 #include <gdal_priv.h>
@@ -407,11 +408,7 @@ struct CDB_Model_Runtime_Class
 			}
 
 			inst_KeyIndex = poFDefn->GetFieldIndex("CNAM");
-			if (inst_KeyIndex < 0)
-			{
-				return failed;
-			}
-
+			//Not Required if inst/class are merged
 			inst_FACC_index = poFDefn->GetFieldIndex("FACC");
 			if (inst_FACC_index < 0)
 			{
@@ -419,6 +416,8 @@ struct CDB_Model_Runtime_Class
 			}
 
 			inst_FSC_index = poFDefn->GetFieldIndex("FSC");
+			//This is required but some leave it out
+			//assume zero if it is missing
 #if 0
 			if (fsc_index < 0)
 			{
@@ -427,30 +426,24 @@ struct CDB_Model_Runtime_Class
 #endif
 
 			inst_bsr_index = poFDefn->GetFieldIndex("BSR");
-			if (inst_bsr_index < 0)
-			{
-				return failed;
-			}
+			//This is required but some leave it out
+			//assume zero if it is missing
 
 			inst_bbw_index = poFDefn->GetFieldIndex("BBW");
-			if (inst_bbw_index < 0)
-			{
-				return failed;
-			}
+			//This is required but some leave it out
+			//assume zero if it is missing
 
 			inst_bbl_index = poFDefn->GetFieldIndex("BBL");
-			if (inst_bbl_index < 0)
-			{
-				return failed;
-			}
+			//This is required but some leave it out
+			//assume zero if it is missing
 
 			inst_bbh_index = poFDefn->GetFieldIndex("BBH");
-			if (inst_bbh_index < 0)
-			{
-				return failed;
-			}
+			//This is required but some leave it out
+			//assume zero if it is missing
 
 			inst_ahgt_index = poFDefn->GetFieldIndex("AHGT");
+			//This is required but some leave it out
+			//assume zero if it is missing
 
 			have_indexes = true;
 		}
@@ -460,22 +453,32 @@ struct CDB_Model_Runtime_Class
 
 	std::string set_class(OGRFeature * f, int key_index, int Model_Base_Index, int FACC_Index, int FSC_Index, int bsr_Index, int bbw_Index, int bbl_Index, int bbh_Index, int ahgt_index)
 	{
-		std::string cnam = f->GetFieldAsString(key_index);
+		std::string cnam = "CNAM";
+		if(key_index >= 0)
+			cnam = f->GetFieldAsString(key_index);
+
 		Model_Base_Name = f->GetFieldAsString(Model_Base_Index);
+
 		FACC_value = f->GetFieldAsString(FACC_Index);
+
 		int subcode;
 		if (FSC_Index >= 0)
 			subcode = f->GetFieldAsInteger(FSC_Index);
 		else
 			subcode = 0;
+		
 		std::stringstream format_stream;
 		format_stream << std::setfill('0')
 			<< std::setw(3) << abs(subcode);
 		FSC_value = format_stream.str();
-		bsr = f->GetFieldAsDouble(bsr_Index);
-		bbw = f->GetFieldAsDouble(bbw_Index);
-		bbl = f->GetFieldAsDouble(bbl_Index);
-		bbh = f->GetFieldAsDouble(bbh_Index);
+		if(bsr_Index >= 0)
+			bsr = f->GetFieldAsDouble(bsr_Index);
+		if(bbw_Index >= 0)
+			bbw = f->GetFieldAsDouble(bbw_Index);
+		if(bbl_Index >= 0)
+			bbl = f->GetFieldAsDouble(bbl_Index);
+		if(bbh_Index >= 0)
+			bbh = f->GetFieldAsDouble(bbh_Index);
 		if (ahgt_index >= 0)
 			ahgt = f->GetFieldAsInteger(ahgt_index);
 		return cnam;
